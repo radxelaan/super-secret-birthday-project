@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0px;
+}
+
+#star1 {
+    position: absolute;
+    left: 100px;
+    top: 150px;
+  }
+
+
+  #star2 {
+    position: absolute;
+    left: 250px;
+    top: 300px;
+  }
