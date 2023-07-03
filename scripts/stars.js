@@ -1,15 +1,13 @@
-function changeOpacity(image, state){
-    image.style.opacity = state ? 1 : 0.2
+function changeOpacity(image){
+    image.style.opacity = 1 - image.style.opacity
 };
 
 state = false
 counter = 0
-function blink(image, time){
+function blink(image, time, counter){
     setTimeout(function() {
-        changeOpacity(image, state)
-        state = !state
-        counter = (counter + 1) % time.length
-        blink(image, time)
+        changeOpacity(image)
+        blink(image, time, (counter + 1) % time.length)
     }, time[counter]*150)
 
 }
