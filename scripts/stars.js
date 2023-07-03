@@ -1,19 +1,14 @@
-function changeOpacity(image){
-    image.style.opacity = 1 - image.style.opacity
-};
 
-state = false
-counter = 0
 function blink(image, time, counter){
-    setTimeout(function() {
-        changeOpacity(image)
-        blink(image, time, (counter + 1) % time.length)
-    }, time[counter]*150)
+  image.style.opacity = image.style.opacity == 1 ? 0.3 : 1
+  setTimeout(function() {
+    blink(image, time, (counter + 1) % time.length)
+  }, time[counter]*150)
 
 }
 
 function morseEncode(x) {
-    switch (x) {
+  switch (x) {
     case '1':
       return [1,1,3,1,3,1,3,1,3];
     case '2':
@@ -40,10 +35,9 @@ function morseEncode(x) {
 }
 
 function morse(word){
-    
-    let res = []
-    word.split('').forEach(letter => {
-        res.push(...morseEncode(letter),3)
-    })
-    return res
+  let res = []
+  word.split('').forEach(letter => {
+    res.push(...morseEncode(letter),3)
+  })
+  return res
 }
