@@ -1,17 +1,58 @@
+body {
+  background-image: url('images/bg2.jpg');
+}
+
 * {
   margin: 0;
   padding: 0px;
 }
 
+.star {
+  opacity: 1;
+  width: 6px;
+}
+
 #star1 {
-    position: absolute;
-    left: 100px;
-    top: 150px;
-  }
+  position: absolute;
+  left: 350px;
+  top: 300px;
+}
 
 
-  #star2 {
-    position: absolute;
-    left: 250px;
-    top: 300px;
-  }
+#star2 {
+  position: absolute;
+  left: 550px;
+  top: 200px;
+}
+
+
+#star3 {
+  position: absolute;
+  left: 800px;
+  top: 250px;
+}
+
+
+#star4 {
+  position: absolute;
+  left: 1000px;
+  top: 310px;
+}
+
+#star5 {
+  position: absolute;
+  left: 1400px;
+  top: 240px;
+}
+
+#star6 {
+  position: absolute;
+  left: 1050px;
+  top: 500px;
+}
+
+#star7 {
+  position: absolute;
+  left: 1350px;
+  top: 470px;
+}
