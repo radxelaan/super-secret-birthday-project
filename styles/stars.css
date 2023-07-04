@@ -12,10 +12,21 @@ body {
   width: 6px;
 }
 
+.sparkle {
+  opacity: 0;
+  width: 125px;
+}
+
 #star1 {
   position: absolute;
   left: 350px;
   top: 300px;
+}
+
+#sparkle1 {
+  position: absolute;
+  left: 288px;
+  top: 246px;
 }
 
 
@@ -32,11 +43,23 @@ body {
   top: 250px;
 }
 
+#sparkle3 {
+  position: absolute;
+  left: 738px;
+  top: 195px;
+}
+
 
 #star4 {
   position: absolute;
   left: 1000px;
   top: 310px;
+}
+
+#sparkle4 {
+  position: absolute;
+  left: 938px;
+  top: 255px;
 }
 
 #star5 {
@@ -55,4 +78,10 @@ body {
   position: absolute;
   left: 1350px;
   top: 470px;
+}
+
+#sparkle7 {
+  position: absolute;
+  left: 1288px;
+  top: 415px;
 }

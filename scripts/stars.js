@@ -1,10 +1,18 @@
 
 function blink(image, time, counter){
   image.style.opacity = image.style.opacity == 1 ? 0.3 : 1
+  if (counter == time.length - 1 || !counter){
+    sparkle(image)
+  }
   setTimeout(function() {
     blink(image, time, (counter + 1) % time.length)
   }, time[counter]*150)
+}
 
+function sparkle(starImage){
+  const sparkleImage = document.getElementById(`sparkle${starImage.id.slice(-1)}`)
+  if (sparkleImage == null) return
+  sparkleImage.style.opacity = 1 - starImage.style.opacity
 }
 
 function morseEncode(x) {
@@ -37,7 +45,7 @@ function morseEncode(x) {
 function morse(word){
   let res = []
   word.split('').forEach(letter => {
-    res.push(...morseEncode(letter),3)
+    res.push(...morseEncode(letter),4)
   })
   return res
 }
