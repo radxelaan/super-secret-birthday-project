@@ -8,17 +8,24 @@
         <script type="text/javascript" src="scripts/stars.js"></script>
     </head>
     <body style="background-image: url('images/bg3.jpg');">
-        <img id="star1" class="star" src="images/star.png" onload="blink(this, morse('5'), 0)">
+        <img id="star1" class="star" src="images/star.png" onload="blink(this, morse(code[0]), 0)">
         <img id="sparkle1" class="sparkle" src="images/shine.gif">
         <img id="star2" class="star" src="images/star.png" onload="blink(this, morse('3'), 0)">
-        <img id="star3" class="star" src="images/star.png" onload="blink(this, morse('8'), 0)">
+        <img id="star3" class="star" src="images/star.png" onload="blink(this, morse(code[1]), 0)">
         <img id="sparkle3" class="sparkle" src="images/shine.gif">
-        <img id="star4" class="star" src="images/star.png" onload="blink(this, morse('6'), 0)">
+        <img id="star4" class="star" src="images/star.png" onload="blink(this, morse(code[2]), 0)">
         <img id="sparkle4" class="sparkle" src="images/shine.gif">
         <img id="star5" class="star" src="images/star.png" onload="blink(this, morse('4'), 0)">
         <img id="star6" class="star" src="images/star.png" onload="blink(this, morse('0'), 0)">
-        <img id="star7" class="star" src="images/star.png" onload="blink(this, morse('2'), 0)">
+        <img id="star7" class="star" src="images/star.png" onload="blink(this, morse(code[3]), 0)">
         <img id="sparkle7" class="sparkle" src="images/shine.gif">
+        <form class= "form" name="codeInput" action="/action_page.php" onsubmit="return validateForm()" method="post">
+            <input type="text" class="input-box" name="input1">
+            <input type="text" class="input-box" name="input2">
+            <input type="text" class="input-box" name="input3">
+            <input type="text" class="input-box" name="input4">
+            <input type="submit" class="submit-box" value="Submit">
+          </form>
     </body>
 
 </html>

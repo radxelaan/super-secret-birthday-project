@@ -1,3 +1,4 @@
+code = Math.floor(Math.random() * (9999 - 1000) + 1000).toString()
 
 function blink(image, time, counter){
   image.style.opacity = image.style.opacity == 1 ? 0.3 : 1
@@ -48,4 +49,17 @@ function morse(word){
     res.push(...morseEncode(letter),4)
   })
   return res
+}
+
+function validateForm() {
+  const input1 = document.forms["codeInput"]["input1"].value;
+  const input2 = document.forms["codeInput"]["input2"].value;
+  const input3 = document.forms["codeInput"]["input3"].value;
+  const input4 = document.forms["codeInput"]["input4"].value;
+  if (input1 === code[0] && input2 === code[1] && input3 === code[2] && input4 === code[3]) {
+    alert("Yay");
+    return true;
+  }
+  alert("Try again");
+    return false;
 }
