@@ -1,0 +1,40 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.board{
+    border: 100px ridge #622A0F;
+    width: max-content;
+    display: block;
+    margin-top: 5rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.row{
+    display: flex;
+}
+
+.square{
+    height: 75px;
+    width: 75px;
+}
+
+.piece{
+    z-index: 1;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 75px;
+    width: 75px;
+    -khtml-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none; 
+    -webkit-user-select: none; 
+    user-select: none;
+}
+
+.invisible{
+    transform:translateX(-9999px);
+}
