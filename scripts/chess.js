@@ -17,7 +17,6 @@ function createBoard(){
 
         let square = document.createElement('div');
         square.className = 'square';
-        square.id = i;
         square.addEventListener('drop', dropPiece);
         square.addEventListener('dragover', dragoverPiece);
         square.addEventListener('dragenter', dragenterPiece);
