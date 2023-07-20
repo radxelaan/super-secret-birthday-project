@@ -1,0 +1,14 @@
+.textStyle {
+    color:rgb(3, 197, 3);
+    font-family:"Courier New"
+}
+
+#console {
+    position: relative;
+    width: 98%;
+    height: 400px;
+    top:500px;
+    border-style: solid;
+    border-color: rgb(54, 54, 54);
+    padding: 15px;
+}
