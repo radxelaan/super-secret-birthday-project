@@ -2,10 +2,12 @@ let selectedPiece;
 let currentColor;
 let turn = 0;
 let validMoves = ['kl56','nl14', 'nl31', 'rl16'];
+let kasparov;
 
 function createBoard(){
     const board = document.querySelector('.board');
     board.addEventListener('mouseleave', mouseLeave);
+    kasparov = document.getElementById("kasparov");
     let piece, row, rowcount = 0;
 
     for(let i=1; i<=64; i++){
@@ -192,15 +194,16 @@ function dropPiece(e){
             setTimeout(function(){document.getElementById('54').firstChild.replaceWith(square.firstChild)}, 400);
         }
         if(turn==1){
+            kasparov.src = "images\\kasparov2.png";
             let square = document.getElementById('8');
             square.style.backgroundColor = 'red';
-            console.log(square.style.backgroundColor)
             setTimeout(function(){
                 document.getElementById('15').append(square.firstChild);
                 document.getElementById('8').style.backgroundColor = '#622A0F';
             }, 400);
         }
         if(turn==2){
+            kasparov.src = "images\\kasparov3.png";
             let square = document.getElementById('15');
             square.style.backgroundColor = 'red';
             setTimeout(function(){
@@ -209,11 +212,17 @@ function dropPiece(e){
             }, 400);
         }
         if(turn==3){
+            kasparov.src = "images\\kasparov4.png";
             document.getElementById('24').style.backgroundColor = 'red';
             pieces = document.querySelectorAll('.piece');
             pieces.forEach(p => {
                 p.setAttribute("draggable", false);
             });
+            document.getElementsByTagName("audio")[0].pause();
+            setTimeout(function(){
+                document.getElementsByTagName("audio")[0].src = "audio\\Boss Win - WarioWare, Inc. Mega Microgames! (OST).ogg"
+                document.getElementsByTagName("audio")[0].loop=false
+            }, 500);
         }
         turn++;
         

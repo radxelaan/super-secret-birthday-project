@@ -3,6 +3,10 @@
     margin: 0;
 }
 
+body{
+    background-image: url('/images/table.jpg');
+}
+
 .board{
     border: 100px ridge #622A0F;
     width: max-content;
@@ -37,4 +41,9 @@
 
 .invisible{
     transform:translateX(-9999px);
+}
+
+.profile{
+    border: 10px double darkblue;
+    position: absolute;
 }

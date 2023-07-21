@@ -7,8 +7,16 @@
         <link rel="stylesheet" type="text/css" href="styles\chess.css" />
         <script type="text/javascript" src="scripts/chess challenge.js"></script>
     </head>
-    <body onload="createBoard()">
+    <body onload="createBoard()" style="background-image : url('images/table.jpg')">
+        <img id="kasparov" class="profile" src="images\kasparov1.jpg" style="margin-left: 4rem;">
+        <img class="profile" src="images\deep blue.png" style="margin-left: 80%; margin-top: 27%;">
         <div class="board"></div>
+        <audio autoplay loop volume="0.7">
+            <source src="audio\Undertale OST 036 - Dummy!.ogg" type="audio/ogg">
+          Your browser does not support the audio element.
+        </audio> 
+        <!--<iframe src="audio\Undertale OST 036 - Dummy!.ogg" allow="autoplay" style="display:none">
+        </iframe>--> 
     </body>
 
 </html>
