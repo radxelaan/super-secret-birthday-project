@@ -32,11 +32,6 @@ body{
     margin-right: auto;
     height: 75px;
     width: 75px;
-    -khtml-user-select: none;
-    -o-user-select: none;
-    -moz-user-select: none; 
-    -webkit-user-select: none; 
-    user-select: none;
 }
 
 .invisible{
@@ -46,4 +41,12 @@ body{
 .profile{
     border: 10px double darkblue;
     position: absolute;
+}
+
+img{
+    -khtml-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none; 
+    -webkit-user-select: none; 
+    user-select: none;
 }

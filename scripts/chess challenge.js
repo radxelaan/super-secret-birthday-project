@@ -8,6 +8,7 @@ function createBoard(){
     const board = document.querySelector('.board');
     board.addEventListener('mouseleave', mouseLeave);
     kasparov = document.getElementById("kasparov");
+    document.getElementsByTagName("audio")[0].volume = '0.4';
     let piece, row, rowcount = 0;
 
     for(let i=1; i<=64; i++){
