@@ -16,9 +16,10 @@ function start(){
     mike = document.getElementById("mike");
     gob = document.getElementById("goblin");
     mike.src = "images\\mikeUp.png";
-    document.getElementsByTagName("audio")[0].volume = '0.2';
     let go = document.getElementById("go");
     mike.onload = function(){
+        document.getElementsByTagName("audio")[0].volume = '0.2';
+        document.getElementsByTagName("audio")[0].src = 'audio\\Bring Sally Up - Push Up Challenge with Timer.ogg';
         setTimeout(function(){
             go.src = "images\\4.png"
             setTimeout(function(){
@@ -192,6 +193,8 @@ function defeat(){
         text.style.visibility = "visible";
         text.style.width= "500px";
         text.style.marginLeft= "40%";
-        text.src = "images\\defeat.png";
+        text.onload = function(){
+            text.src = "images\\defeat.png";
+        }
     }, 300);
 }
