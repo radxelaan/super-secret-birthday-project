@@ -13,13 +13,37 @@ let command;
 let strikes = 0;
 
 function start(){
+    mike = document.getElementById("mike");
+    mike.src = "images\\mikeUp.png";
     document.getElementsByTagName("audio")[0].volume = '0.2';
     let go = document.getElementById("go");
-    
+    setTimeout(function(){
+        go.src = "images\\4.png"
+        setTimeout(function(){
+            go.src = "images\\3.png"
+            setTimeout(function(){
+                go.src = "images\\2.png"
+                setTimeout(function(){
+                    go.src = "images\\1.png"
+                    setTimeout(function(){
+                        go.style.marginLeft = "37%";
+                        go.style.marginTop = "5%";
+                        go.src = "images\\go.png";
+                        bringSallyUp();
+                        getReadyMike();
+                        setTimeout(function(){
+                            go.style.visibility = "hidden";
+                            key = document.getElementById("key");
+                            key.style.visibility = "visible";
+                        }, 1000);
+                    }, 1000);
+                }, 1000);
+            }, 1000);
+        }, 1000);
+    }, 1000);
 }
 
 async function bringSallyUp() {
-    mike = document.getElementById("mike");
     gob = document.getElementById("goblin");
     gobPos = gob.src.split("images/")[1];
     if (gobPos == "sarabacharMid.png"){
