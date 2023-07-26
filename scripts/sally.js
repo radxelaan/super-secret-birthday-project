@@ -11,6 +11,7 @@ let keyLabels = ['W', 'A', 'S', 'D', 'Q', 'E', 'R', 'T', 'Y', 'I', 'J', 'K', 'L'
 let key;
 let command;
 let strikes = 0;
+let mikeFlag=false;
 
 function start(){
     mike = document.getElementById("mike");
@@ -18,32 +19,35 @@ function start(){
     mike.src = "images\\mikeUp.png";
     let go = document.getElementById("go");
     mike.onload = function(){
-        document.getElementsByTagName("audio")[0].volume = '0.2';
-        document.getElementsByTagName("audio")[0].src = 'audio\\Bring Sally Up - Push Up Challenge with Timer.ogg';
-        setTimeout(function(){
-            go.src = "images\\4.png"
+        if(!mikeFlag){
+            mikeFlag = true;
+            document.getElementsByTagName("audio")[0].volume = '0.2';
+            document.getElementsByTagName("audio")[0].src = 'audio\\Bring Sally Up - Push Up Challenge with Timer.ogg';
             setTimeout(function(){
-                go.src = "images\\3.png"
+                go.src = "images\\4.png"
                 setTimeout(function(){
-                    go.src = "images\\2.png"
+                    go.src = "images\\3.png"
                     setTimeout(function(){
-                        go.src = "images\\1.png"
+                        go.src = "images\\2.png"
                         setTimeout(function(){
-                            go.style.marginLeft = "37%";
-                            go.style.marginTop = "5%";
-                            go.src = "images\\go.png";
-                            bringSallyUp();
-                            getReadyMike();
+                            go.src = "images\\1.png"
                             setTimeout(function(){
-                                go.style.visibility = "hidden";
-                                key = document.getElementById("key");
-                                key.style.visibility = "visible";
+                                go.style.marginLeft = "37%";
+                                go.style.marginTop = "5%";
+                                go.src = "images\\go.png";
+                                bringSallyUp();
+                                getReadyMike();
+                                setTimeout(function(){
+                                    go.style.visibility = "hidden";
+                                    key = document.getElementById("key");
+                                    key.style.visibility = "visible";
+                                }, 1000);
                             }, 1000);
                         }, 1000);
                     }, 1000);
                 }, 1000);
             }, 1000);
-        }, 1000);
+        }
     }
 }
 
