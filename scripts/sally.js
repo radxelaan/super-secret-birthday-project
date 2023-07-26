@@ -1,3 +1,4 @@
+let mike;
 let gob;
 let gobPos;
 let down = false;
@@ -41,16 +42,15 @@ function start(){
 }
 
 async function bringSallyUp() {
+    mike = document.getElementById("mike");
     gob = document.getElementById("goblin");
     gobPos = gob.src.split("images/")[1];
-    if (gobPos == "sarabacharMid.png" && gobPos != "sarabacharDefeat1.png" && gobPos != "sarabacharDefeat2.png"){
+    if (gobPos == "sarabacharMid.png"){
         waitTime = 200;
-        if(count == 29 && down){
+        if(count == 29 && down && text.src.split("images/")[1] != "defeat.png"){
             waitTime = 1000;
             gobPos = "sarabacharDefeat1.png";
-            if (document.getElementById("text").src != "images\\defeat.png"){
-                victory();
-            }
+            victory();
         }
     }
     else if(gobPos == "sarabacharDefeat1.png" || gobPos == "sarabacharDefeat2.png"){
@@ -113,7 +113,6 @@ async function bringSallyUp() {
 }
 
 function getReadyMike(){
-   let mike = document.getElementById("mike");
    setTimeout(function(){
         mike.src = "images\\mikeMid.png";
         setTimeout(function(){
@@ -126,7 +125,6 @@ function getReadyMike(){
 function keyDownHandler(e){
     let mike = document.getElementById("mike");
     let text = document.getElementById("text");
-    console.log(down)
     if(e.keyCode == keyCodes[command] && mike.src.split("images/")[1] == "mikeUp.png" && !down){
         mike.src = "images\\mikeMid.png";
         key.style.backgroundColor = "lime";
@@ -153,7 +151,7 @@ function keyDownHandler(e){
     }
     else{
         key.style.backgroundColor = "red";
-        text.src = "images\\tooLate.png";
+        text.src = "images\\wrong.png";
         text.style.visibility = "visible";
         setTimeout(function(){
             text.style.visibility = "hidden";
@@ -176,8 +174,8 @@ function victory(){
         document.getElementsByTagName("audio")[0].loop=false
         text.style.visibility = "visible";
         text.src = "images\\victory.png";
-        text.style.width= "450px";
-        text.style.marginLeft= "42%";
+        text.style.width= "500px";
+        text.style.marginLeft= "40%";
     }, 13000);
 }
 
