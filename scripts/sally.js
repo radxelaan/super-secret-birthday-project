@@ -32,8 +32,10 @@ function start(){
                         setTimeout(function(){
                             go.src = "images\\1.png"
                             setTimeout(function(){
+                                go.style.visibility = "hidden";
                                 go.style.marginLeft = "37%";
                                 go.style.marginTop = "5%";
+                                go.style.visibility = "visible";
                                 go.src = "images\\go.png";
                                 bringSallyUp();
                                 getReadyMike();
@@ -194,11 +196,9 @@ function defeat(){
     setTimeout(function(){
         document.getElementsByTagName("audio")[0].src = "audio\\Boss Loss - WarioWare, Inc. Mega Microgames! (OST).ogg";
         document.getElementsByTagName("audio")[0].loop=false
+        text.src = "images\\defeat.png";
         text.style.visibility = "visible";
         text.style.width= "500px";
         text.style.marginLeft= "40%";
-        text.onload = function(){
-            text.src = "images\\defeat.png";
-        }
     }, 300);
 }
