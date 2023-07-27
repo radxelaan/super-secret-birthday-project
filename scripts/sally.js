@@ -34,11 +34,11 @@ function start(){
                         setTimeout(function(){
                             go.src = "images\\1.png"
                             setTimeout(function(){
-                                go.style.visibility = "hidden";
-                                go.style.marginLeft = "37%";
-                                go.style.marginTop = "5%";
-                                go.style.visibility = "visible";
                                 go.src = "images\\go.png";
+                                go.onload = function(){
+                                    go.style.marginLeft = "37%";
+                                    go.style.marginTop = "5%";
+                                }
                                 bringSallyUp();
                                 getReadyMike();
                                 setTimeout(function(){
@@ -186,22 +186,25 @@ function victory(){
         document.getElementsByTagName("audio")[0].loop=false
         text.style.visibility = "visible";
         text.src = "images\\victory.png";
-        text.style.width= "500px";
-        text.style.marginLeft= "40%";
+        text.onload = function(){
+            text.style.width= "500px";
+            text.style.marginLeft= "40%";
+        }
     }, 13000);
 }
 
 function defeat(){
     document.removeEventListener("keydown", keyDownHandler);
     document.getElementsByTagName("audio")[0].pause();
-    key.style.visibility = "hidden";
     setTimeout(function(){
         document.getElementsByTagName("audio")[0].src = "audio\\Boss Loss - WarioWare, Inc. Mega Microgames! (OST).ogg";
         document.getElementsByTagName("audio")[0].loop=false
-        text.src = "images\\defeat.png";
         text.style.visibility = "visible";
-        text.style.width= "500px";
-        text.style.marginLeft= "40%";
+        text.src = "images\\defeat.png";
+        text.onload = function(){
+            text.style.width= "500px";
+            text.style.marginLeft= "40%";
+        }
     }, 300);
 }
 
