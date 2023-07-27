@@ -12,11 +12,13 @@ let key;
 let command;
 let strikes = 0;
 let mikeFlag=false;
+let mikePos;
 
 function start(){
     mike = document.getElementById("mike");
     gob = document.getElementById("goblin");
     mike.src = "images\\mikeUp.png";
+    mikePos = mike.src.split("images/")[1];
     let go = document.getElementById("go");
     mike.onload = function(){
         if(!mikeFlag){
@@ -55,6 +57,7 @@ function start(){
 
 async function bringSallyUp() {
     gobPos = gob.src.split("images/")[1];
+    mikePos = mike.src.split("images/")[1];
     if (gobPos == "sarabacharMid.png"){
         waitTime = 200;
         if(count == 29 && down && text.src.split("images/")[1] != "defeat.png"){
@@ -82,6 +85,7 @@ async function bringSallyUp() {
     else{
         wait = false;
     }
+
     setTimeout(function(){
         if(!wait && gobPos == "sarabacharUp.png"){
             gob.src = "images\\sarabacharMid.png";
@@ -94,6 +98,9 @@ async function bringSallyUp() {
             }, 700);
             setTimeout(function(){
                 down = true;
+                if(text.src.split("images/")[1] != "defeat.png" && mikePos == "mikeUp.png"){
+                    penalty();
+                }
             }, 175);
         }
         else if (!wait && gobPos == "sarabacharMid.png"){
@@ -105,6 +112,9 @@ async function bringSallyUp() {
             }, 700);
             setTimeout(function(){
                 down = false;
+                if(text.src.split("images/")[1] != "defeat.png" && mikePos == "mikeDown.png"){
+                    penalty();
+                }
             }, 175);
         }
         else if (gobPos == "sarabacharDefeat1.png") {
@@ -133,9 +143,9 @@ function getReadyMike(){
 }
 
 function keyDownHandler(e){
-    let mike = document.getElementById("mike");
     let text = document.getElementById("text");
-    if(e.keyCode == keyCodes[command] && mike.src.split("images/")[1] == "mikeUp.png" && !down){
+    if(e.keyCode == keyCodes[command] && mikePos == "mikeUp.png" && !down){
+        mikePos = "mikeDown.png";
         mike.src = "images\\mikeMid.png";
         key.style.backgroundColor = "lime";
         text.src = "images\\good.png";
@@ -147,7 +157,8 @@ function keyDownHandler(e){
             mike.src = "images\\mikeDown.png";
         }, 200);
     }
-    else if(!wait && e.keyCode == keyCodes[command] && mike.src.split("images/")[1] == "mikeDown.png" && down){
+    else if(!wait && e.keyCode == keyCodes[command] && mikePos == "mikeDown.png" && down){
+        mikePos = "mikeUp.png";
         mike.src = "images\\mikeMid.png";
         key.style.backgroundColor = "lime";
         text.src = "images\\good.png";
@@ -160,16 +171,7 @@ function keyDownHandler(e){
         }, 200);
     }
     else{
-        key.style.backgroundColor = "red";
-        text.src = "images\\wrong.png";
-        text.style.visibility = "visible";
-        setTimeout(function(){
-            text.style.visibility = "hidden";
-        }, 200);
-        strikes++;
-        if(strikes>=3){
-            defeat();
-        }
+        penalty();
     }
 
 }
@@ -201,4 +203,17 @@ function defeat(){
         text.style.width= "500px";
         text.style.marginLeft= "40%";
     }, 300);
+}
+
+function penalty(){
+    strikes++;
+    key.style.backgroundColor = "red";
+    text.src = "images\\wrong.png";
+    text.style.visibility = "visible";
+    setTimeout(function(){
+        text.style.visibility = "hidden";
+    }, 200);
+    if(strikes>=3){
+        defeat();
+    }
 }
