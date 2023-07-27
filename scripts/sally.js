@@ -11,6 +11,7 @@ let keyLabels = ['W', 'A', 'S', 'D', 'Q', 'E', 'R', 'T', 'Y', 'I', 'J', 'K', 'L'
 let key;
 let command;
 let strikes = 0;
+let mikeFlag=false;
 let mikePos;
 
 function start(){
@@ -20,7 +21,8 @@ function start(){
     mikePos = mike.src.split("images/")[1];
     let go = document.getElementById("go");
     mike.onload = function(){
-        go.onload = function(){
+        if(!mikeFlag){
+            mikeFlag = true;
             document.getElementsByTagName("audio")[0].volume = '0.2';
             document.getElementsByTagName("audio")[0].src = 'audio\\Bring Sally Up - Push Up Challenge with Timer.ogg';
             setTimeout(function(){
