@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multiple Choice Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #004aad; /* Game show theme background color (dark blue) */
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .quiz-container {
+      max-width: 600px;
+      padding: 20px;
+      background: #fff; /* White background for the questions */
+      border: 1px solid #ccc; /* Border around the questions */
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Box shadow effect */
+      position: relative;
+      overflow: hidden;
+    }
+    .question {
+      margin-bottom: 15px;
+    }
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 10px;
+    }
+    .option-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+    .option-button.selected {
+      background-color: #007bff; /* Highlight color for selected option (blue) */
+      color: #fff;
+      border-color: #007bff;
+    }
+    .btn-submit {
+      display: block;
+      margin: 20px auto; /* Center the submit button */
+      background-color: #007bff; /* Blue button background color */
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .total-questions {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    #result {
+        text-align: center;
+    }
+    /* .background-pattern {
+      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVR42mP8Gw8AAwAB/2+BqZgAAAAASUVORK5CYII=') repeat;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    } */
+  </style>
+</head>
+<body>
+  <div class="background-pattern"></div>
+  <div class="quiz-container">
+    <h1 style="text-align: center;">Multiple Choice Quiz</h1>
+    <div class="total-questions">Question <span id="current-question">1</span> of <span id="total-questions">4</span></div>
+    <div class="question" id="question1">
+      <p>1. What is the capital of France?</p>
+      <div class="options-grid">
+        <div class="option-button" value="a" onclick="selectOption('a', 1)">London</div>
+        <div class="option-button" value="b" onclick="selectOption('b', 1)">Paris</div>
+        <div class="option-button" value="c" onclick="selectOption('c', 1)">Berlin</div>
+        <div class="option-button" value="d" onclick="selectOption('d', 1)">Rome</div>
+      </div>
+    </div>
+
+    <div class="question" id="question2" style="display: none;">
+      <p>2. What is the largest planet in our solar system?</p>
+      <div class="options-grid">
+        <div class="option-button" value="a" onclick="selectOption('a', 2)">Jupiter</div>
+        <div class="option-button" value="b" onclick="selectOption('b', 2)">Earth</div>
+        <div class="option-button" value="c" onclick="selectOption('c', 2)">Saturn</div>
+        <div class="option-button" value="d" onclick="selectOption('d', 2)">Neptune</div>
+      </div>
+    </div>
+
+    <div class="question" id="question3" style="display: none;">
+      <p>3. Which planet is known as the "Red Planet"?</p>
+      <div class="options-grid">
+        <div class="option-button" value="a" onclick="selectOption('a', 3)">Venus</div>
+        <div class="option-button" value="b" onclick="selectOption('b', 3)">Mars</div>
+        <div class="option-button" value="c" onclick="selectOption('c', 3)">Mercury</div>
+        <div class="option-button" value="d" onclick="selectOption('d', 3)">Jupiter</div>
+      </div>
+    </div>
+
+    <div class="question" id="question4" style="display: none;">
+      <p>4. Which is the fastest animal?</p>
+      <div class="options-grid">
+        <div class="option-button" value="a" onclick="selectOption('a', 4)">Cheetah</div>
+        <div class="option-button" value="b" onclick="selectOption('b', 4)">Falcon</div>
+        <div class="option-button" value="c" onclick="selectOption('c', 4)">Hedgehog</div>
+        <div class="option-button" value="d" onclick="selectOption('d', 4)">Swordfish</div>
+      </div>
+    </div>
+
+    <button class="btn-submit" onclick="checkAnswer()">Submit</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const totalQuestions = 4;
+    let currentQuestion = 1;
+    let score = 0;
+    let selectedOption;
+
+    function selectOption(option, questionNumber) {
+      selectedOption = option;
+      const optionButtons = document.querySelectorAll(`#question${questionNumber} .option-button`);
+      optionButtons.forEach(button => {
+        button.classList.remove('selected');
+      });
+      const selectedButton = document.querySelector(`#question${questionNumber} .option-button[value="${option}"]`);
+      selectedButton.classList.add('selected');
+    }
+
+    function checkAnswer() {
+      if (!selectedOption) {
+        alert("Please select an option.");
+        return;
+      }
+
+      // Replace the following lines with your answer validation logic for each question
+      const correctAnswers = ['b', 'a', 'b','c'];
+      const isCorrect = selectedOption === correctAnswers[currentQuestion - 1];
+
+      if (isCorrect) {
+        score++;
+        proceedToNextQuestion();
+      } else {
+        alert("Wrong answer, try again")
+      }
+
+    }
+
+    function proceedToNextQuestion() {
+      if (currentQuestion < totalQuestions) {
+        document.getElementById(`question${currentQuestion}`).style.display = "none";
+        document.getElementById(`question${currentQuestion + 1}`).style.display = "block";
+        currentQuestion++;
+        selectedOption = null; // Reset selected option for the next question
+        updateTotalQuestions();
+      } else {
+        showResult();
+      }
+    }
+
+    function updateTotalQuestions() {
+      document.getElementById('current-question').textContent = currentQuestion;
+      document.getElementById('total-questions').textContent = totalQuestions;
+    }
+
+    function showResult() {
+      const resultElement = document.getElementById("result");
+      const resultPercentage = (score / totalQuestions) * 100;
+      resultElement.innerHTML = `<p>Congratulations!</p>`;
+      document.getElementById(`question${currentQuestion}`).style.display = "none";
+      document.querySelector(".btn-submit").style.display = "none";
+    }
+  </script>
+</body>
+</html>
