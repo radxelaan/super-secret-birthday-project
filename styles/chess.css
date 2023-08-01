@@ -50,3 +50,19 @@ img{
     -webkit-user-select: none; 
     user-select: none;
 }
+
+#paper{
+    position: absolute; margin-top: 25%; margin-left: 50%;
+    visibility: hidden;
+    width: 5px;
+    height: 7px;
+    z-index: 1;
+    transition:all 1.5s ease;
+}
+
+.transition{
+    -webkit-transform: rotate(7100deg) scale(100);
+    -ms-transform: rotate(710deg) scale(100);
+    transform: rotate(710deg) scale(100);
+    z-index: 9999;
+}

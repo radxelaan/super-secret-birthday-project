@@ -15,6 +15,13 @@ let mikeFlag=false;
 let mikePos;
 
 function start(){
+    let audio = document.getElementsByTagName("audio")[0];
+    audio.volume = '0.2';
+    audio.src = 'audio\\Bring Sally Up - Push Up Challenge with Timer.ogg';
+    audio.addEventListener("loadeddata", loadedAudio);
+}
+
+function loadedAudio(){
     mike = document.getElementById("mike");
     gob = document.getElementById("goblin");
     mike.src = "images\\mikeUp.png";
@@ -23,8 +30,6 @@ function start(){
     mike.onload = function(){
         if(!mikeFlag){
             mikeFlag = true;
-            document.getElementsByTagName("audio")[0].volume = '0.2';
-            document.getElementsByTagName("audio")[0].src = 'audio\\Bring Sally Up - Push Up Challenge with Timer.ogg';
             setTimeout(function(){
                 go.src = "images\\4.png"
                 setTimeout(function(){
@@ -60,7 +65,7 @@ async function bringSallyUp() {
     mikePos = mike.src.split("images/")[1];
     if (gobPos == "sarabacharMid.png"){
         waitTime = 200;
-        if(count == 29 && down && text.src.split("images/")[1] != "defeat.png"){
+        if(count == 1 && down && text.src.split("images/")[1] != "defeat.png"){
             waitTime = 1000;
             gobPos = "sarabacharDefeat1.png";
             victory();
@@ -180,7 +185,7 @@ function victory(){
     setTimeout(function(){
         document.removeEventListener("keydown", keyDownHandler);
         key.style.visibility = "hidden";
-    }, 1000);
+    }, 1600);
     setTimeout(function(){
         document.getElementsByTagName("audio")[0].src = "audio\\Boss Win - WarioWare, Inc. Mega Microgames! (OST).ogg";
         document.getElementsByTagName("audio")[0].loop=false
@@ -190,7 +195,11 @@ function victory(){
             text.style.width= "500px";
             text.style.marginLeft= "40%";
         }
-    }, 13000);
+        setTimeout(function(){
+            document.getElementById('tattoo').style.visibility = 'visible';
+            document.getElementById('tattoo').classList.add('transition');
+        }, 3000);
+    }, 13000 );
 }
 
 function defeat(){

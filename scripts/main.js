@@ -1,9 +1,10 @@
-let script = ['Hello, this is a test./How are you doing?#a. Fine#b. Not fine :(&'];
-let outcomes = ['Glad to hear. Want me to show you something cool?#a.Sure#b. Nah.&', 'Oh no what\'s wrong? Want me to take you somewhere to cheer you up?#a.Yes please#b.Not really...&', '$Ta-dah! We are in space!', 'Oh ok... I\'ll leave you alone then.'];
+let script = ['Hello, this is a test./How are you doing?#a. Fine#b. Not fine :(&This is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentenceThis is a really long sentence'];
+let outcomes = ['Glad to hear. Want me to show you something cool?#a.Sure#b. Nah.&', 'Oh no what\'s wrong? Want me to take you somewhere to cheer you up?#a.Yes please#b.Not really...&', '$Ta-dah! We are in space!/ Do you want to go somewhere else? #a. Sure#b. No&', 'Oh ok... I\'ll leave you alone then.', 'Here we go!$', 'Oh ok... I\'ll leave you alone then.'];
 let output;
 let remainingText;
 let waiting = false;
 let choices = Array();
+let eventCount = 0
 
 function start(){
     output = document.getElementById("text");
@@ -24,20 +25,28 @@ function showText(text) {
         setTimeout(function () { showText(text.slice(1)) }, 50)
     }
     else if(text[0] === '&'){
-        output.innerHTML += '<br/>>';
+        output.innerHTML += '<br/>> ';
         document.addEventListener('keydown', selectChoice);
         remainingText = text;
         waiting = true;
         waitForInput();
     }
     else if(text[0] === '$'){
-        document.body.classList.add('transition');
-        document.body.style.backgroundColor = "azure";
-        setTimeout(function () { 
-            document.body.classList.remove('transition');
-            document.body.style.background = "url('images/bg3.jpg')";
-            setTimeout(function () { showText(text.slice(1)) }, 50)
-        }, 1000)
+        if(eventCount == 0){
+            document.body.classList.add('transition');
+            document.body.style.backgroundColor = "azure";
+            setTimeout(function () { 
+                document.body.classList.remove('transition');
+                document.body.style.background = "url('images/bg3.jpg')";
+                setTimeout(function () { showText(text.slice(1)) }, 50)
+            }, 1000)
+            eventCount++;
+        }
+        else{
+            setTimeout(function () { 
+                window.location.replace('chess.html');
+            }, 500)
+        }
     }
     else{
         output.innerHTML += text[0];
@@ -85,7 +94,6 @@ function selectChoice(e){
         remainingText = remainingText.replace('&', outcomes[choices.indexOf(e.key)]);
         outcomes = outcomes.splice(choices.length);
         choices = Array();
-        console.log(remainingText);
         waiting = false;
         showText(remainingText);
     }

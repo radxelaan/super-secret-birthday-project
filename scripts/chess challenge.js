@@ -223,6 +223,10 @@ function dropPiece(e){
             setTimeout(function(){
                 document.getElementsByTagName("audio")[0].src = "audio\\Boss Win - WarioWare, Inc. Mega Microgames! (OST).ogg"
                 document.getElementsByTagName("audio")[0].loop=false
+                setTimeout(function(){
+                    document.getElementById('paper').style.visibility = 'visible';
+                    document.getElementById('paper').classList.add('transition');
+                }, 3000);
             }, 500);
         }
         turn++;
