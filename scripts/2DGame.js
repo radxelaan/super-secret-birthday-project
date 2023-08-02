@@ -29,7 +29,13 @@ function scaleLinesX(){
   let scaleLines = []
   x.forEach(point => {
     if (!(Math.round(point) % scale_factor)) {
-      scaleLines.push(Matter.Bodies.rectangle(point + w/2, h / 2, 1, 10, { isStatic: true }))
+      const l = Matter.Bodies.rectangle(point + w/2, h / 2, 1, 10, { isStatic: true })
+      l.collisionFilter = {
+        'group': -1,
+        'category': 2,
+        'mask': 0,
+        }
+      scaleLines.push(l)
     }
   })
   return scaleLines
@@ -39,7 +45,13 @@ function scaleLinesY(){
   let scaleLines = []
   x.forEach(point => {
     if (!(Math.round(point) % scale_factor)) {
-      scaleLines.push(Matter.Bodies.rectangle(w / 2, point + h / 2, 10, 1, { isStatic: true }))
+      const l = Matter.Bodies.rectangle(w / 2, point + h / 2, 10, 1, { isStatic: true })
+      l.collisionFilter = {
+        'group': -1,
+        'category': 2,
+        'mask': 0,
+        }
+      scaleLines.push(l)
     }
   })
   return scaleLines
@@ -59,7 +71,8 @@ function plot(eq) {
   return p
 }
 
-let ball = Matter.Bodies.circle(700,100,20)
+let ball = Matter.Bodies.circle(100,100,20)
+let platform = Matter.Bodies.rectangle(100, 120, 50, 5, { isStatic: true })
 
 const xAxis = Matter.Bodies.rectangle(w / 2, h / 2, h, 1, { isStatic: true })
 xAxis.collisionFilter = {
@@ -104,6 +117,7 @@ document.querySelector('#zoom').addEventListener("click", function () {
 })
  
 bodies.push(ball)
+bodies.push(platform)
 bodies.push(xAxis)
 bodies.push(yAxis)
 
@@ -117,4 +131,5 @@ document.querySelector('#submit').addEventListener("click", function () {
   equations.push(eq)
   lines.push(plot(eq))
   Matter.World.add(engine.world, lines[lines.length - 1])
+  Matter.World.remove(engine.world, platform)
 })
