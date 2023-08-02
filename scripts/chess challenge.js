@@ -8,6 +8,7 @@ function createBoard(){
     const board = document.querySelector('.board');
     board.addEventListener('mouseleave', mouseLeave);
     kasparov = document.getElementById("kasparov");
+    document.getElementsByTagName("audio")[0].volume = '0.4';
     let piece, row, rowcount = 0;
 
     for(let i=1; i<=64; i++){
@@ -222,6 +223,10 @@ function dropPiece(e){
             setTimeout(function(){
                 document.getElementsByTagName("audio")[0].src = "audio\\Boss Win - WarioWare, Inc. Mega Microgames! (OST).ogg"
                 document.getElementsByTagName("audio")[0].loop=false
+                setTimeout(function(){
+                    document.getElementById('paper').style.visibility = 'visible';
+                    document.getElementById('paper').classList.add('transition');
+                }, 3000);
             }, 500);
         }
         turn++;
