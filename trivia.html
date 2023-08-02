@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multiple Choice Quiz</title>
+  <link rel="stylesheet" type="text/css" href="styles\trivia.css" />
+</head>
+<body>
+  <div class="quiz-container">
+    <h1 style="text-align: center;">Multiple Choice Quiz</h1>
+    <div class="total-questions">Question <span id="current-question">1</span> of <span id="total-questions">10</span></div>
+    <div class="question" id="question1">
+      <p>1. What is the capital of France?</p>
+      <div class="options-grid">
+        <div class="option-button" value="a" onclick="selectOption('a', 1)">London</div>
+        <div class="option-button" value="b" onclick="selectOption('b', 1)">Paris</div>
+        <div class="option-button" value="c" onclick="selectOption('c', 1)">Berlin</div>
+        <div class="option-button" value="d" onclick="selectOption('d', 1)">Rome</div>
+      </div>
+    </div>
+
+    <div class="question" id="question2" style="display: none;">
+      <p>2. Which of the following is closest to the square root of 10.5 ?</p>
+      <div class="options-grid">
+        <div class="option-button" value="a" onclick="selectOption('a', 2)">3</div>
+        <div class="option-button" value="b" onclick="selectOption('b', 2)">4</div>
+        <div class="option-button" value="c" onclick="selectOption('c', 2)">5</div>
+        <div class="option-button" value="d" onclick="selectOption('d', 2)">8</div>
+      </div>
+    </div>
+
+    <div class="question" id="question3" style="display: none;">
+      <p>3. Which planet is known as the "Red Planet"?</p>
+      <div class="options-grid">
+        <div class="option-button" value="a" onclick="selectOption('a', 3)">Venus</div>
+        <div class="option-button" value="b" onclick="selectOption('b', 3)">Mars</div>
+        <div class="option-button" value="c" onclick="selectOption('c', 3)">Mercury</div>
+        <div class="option-button" value="d" onclick="selectOption('d', 3)">Jupiter</div>
+      </div>
+    </div>
+
+    <div class="question" id="question4" style="display: none;">
+      <p>4. Which insect shorted out an early supercomputer and inspired the term "computer bug"?</p>
+      <div class="options-grid">
+        <div class="option-button" value="a" onclick="selectOption('a', 4)">Moth</div>
+        <div class="option-button" value="b" onclick="selectOption('b', 4)">Roach</div>
+        <div class="option-button" value="c" onclick="selectOption('c', 4)">Fly</div>
+        <div class="option-button" value="d" onclick="selectOption('d', 4)">Japanese beetle</div>
+      </div>
+    </div>
+
+    <div class="question" id="question5" style="display: none;">
+      <p>5. The Earth is approximately how many kilometers away from the Sun?</p>
+      <div class="options-grid">
+        <div class="option-button" value="a" onclick="selectOption('a', 5)">5.1 million</div>
+        <div class="option-button" value="b" onclick="selectOption('b', 5)">15 million</div>
+        <div class="option-button" value="c" onclick="selectOption('c', 5)">150 million</div>
+        <div class="option-button" value="d" onclick="selectOption('d', 5)">230 million</div>
+      </div>
+    </div>
+
+    <div class="question" id="question6" style="display: none;">
+      <p>6. Which is the fastest animal in the world?</p>
+      <div class="options-grid">
+        <div class="option-button" value="a" onclick="selectOption('a', 6)">Cheetah</div>
+        <div class="option-button" value="b" onclick="selectOption('b', 6)">Falcon</div>
+        <div class="option-button" value="c" onclick="selectOption('c', 6)">Hedgehog</div>
+        <div class="option-button" value="d" onclick="selectOption('d', 6)">Swordfish</div>
+      </div>
+    </div>
+
+    <div class="question" id="question7" style="display: none;">
+      <p>7. Which is the best genre of music?</p>
+      <div class="options-grid">
+        <div class="option-button" value="a" onclick="selectOption('a', 7)">Slut Pop</div>
+        <div class="option-button" value="b" onclick="selectOption('b', 7)">Deep Funk</div>
+        <div class="option-button" value="c" onclick="selectOption('c', 7)">Medieval Music</div>
+        <div class="option-button" value="d" onclick="selectOption('d', 7)">IDM (Intelligent Dance Music) </div>
+      </div>
+    </div>
+
+    <div class="question" id="question8" style="display: none;">
+      <p>8. Which game did you play alot with Anthony during lesson breaks in the first year of Uni?</p>
+      <div class="options-grid">
+        <div class="option-button" value="a" onclick="selectOption('a', 8)">Chess</div>
+        <div class="option-button" value="b" onclick="selectOption('b', 8)">Tichu</div>
+        <div class="option-button" value="c" onclick="selectOption('c', 8)">Tetris </div>
+        <div class="option-button" value="d" onclick="selectOption('d', 8)">Keep Talking and Nobody Explodes</div>
+      </div>
+    </div>
+
+    <div class="question" id="question9" style="display: none;">
+      <p>9. When where these pictures taken?</p>
+      <div class ="images-container">  
+        <img src="images/Trivia_Traffic_Patrol.jpeg" alt="" class ="mike-images">
+        <img src="images/Trivia_Balloon_Man.jpeg" alt="" class ="mike-images">
+      </div>
+      <br>
+      <div class="options-grid">
+        <div class="option-button" value="a" onclick="selectOption('a', 9)">Yesterday</div>
+        <div class="option-button" value="b" onclick="selectOption('b', 9)">October 2022</div>
+        <div class="option-button" value="c" onclick="selectOption('c', 9)">February 2022</div>
+        <div class="option-button" value="d" onclick="selectOption('d', 9)">April 2023</div>
+      </div>
+    </div>
+
+    <div class="question" id="question10" style="display: none;">
+      <p>10. What is the Answer to the Ultimate Question of Life, the Universe, and Everything</p>
+      <div class="options-grid">
+        <div class="option-button" value="a" onclick="selectOption('a', 10)">42</div>
+        <div class="option-button" value="b" onclick="selectOption('b', 10)">Deloitte</div>
+        <div class="option-button" value="c" onclick="selectOption('c', 10)">H Mana Sou</div>
+        <div class="option-button" value="d" onclick="selectOption('d', 10)">This Quiz</div>
+      </div>
+    </div>
+
+    <button class="btn-submit" onclick="checkAnswer()">Submit</button>
+    <div id="result"></div>
+  </div>
+
+  <script type="text/javascript" src="scripts/trivia.js"></script>
+</body>
+</html>

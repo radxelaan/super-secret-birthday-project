@@ -1,0 +1,75 @@
+body {
+    font-family: "Courier New";
+    /* background: #004aad; */
+    background-image: url("../images/Trivia_Background.jpg");
+    background-size: cover;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .quiz-container {
+    max-width: 600px;
+    padding: 20px;
+    background: #F9F4EB; /* White background for the questions */
+    border: 1px solid #ccc; /* Border around the questions */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Box shadow effect */
+    position: relative;
+    overflow: hidden;
+  }
+  .question {
+    margin-bottom: 15px;
+  }
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+  }
+  .option-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  }
+  .option-button.selected {
+    background-color: #4682A9; /* Highlight color for selected option (blue) */
+    color: #F6F4EB;
+    border-color: #4682A9;
+  }
+  .btn-submit {
+    display: block;
+    margin: 20px auto; /* Center the submit button */
+    background-color: #4682A9; /* Blue button background color */
+    color: #F6F4EB;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .total-questions {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  #result {
+      text-align: center;
+  }
+  .images-container {
+      display: flex;
+      gap: 2%;
+      flex-wrap: wrap;
+      justify-content: space-between;
+  }
+  .mike-images {
+      width: 49%;
+      box-sizing: border-box;
+      object-fit: cover;
+      display: inline-block;
+      border: none;
+      border-radius: 5px;
+  }
