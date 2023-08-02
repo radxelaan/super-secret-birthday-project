@@ -9,16 +9,17 @@ render = Matter.Render.create({
       width: w
   }
 })
+render.options.wireframes = false
 eq = ''
 x = Array.from(Array(w).keys())
 x = x.map(point => { return point -= w / 2 })
 bodies = []
 
 function equation(x) {
-  return h - (eval(eq) + h / 2)
+  return h - (eval(eq) * h/100 + h / 2)
 }
 
-let ball = Matter.Bodies.circle(700,100,70)
+let ball = Matter.Bodies.circle(700,100,20)
 
 const xAxis = Matter.Bodies.rectangle(w / 2, h / 2, h, 1, { isStatic: true })
 xAxis.collisionFilter = {
@@ -48,7 +49,12 @@ document.querySelector('#submit').addEventListener("click", function () {
   eq = `(${document.querySelector('#equation').value})`
   const points = []
   x.forEach(point => {
-    points.push(Matter.Bodies.rectangle(point + w / 2, equation((point + 5)/10),1,1,{ isStatic: true }))
+    points.push(Matter.Bodies.rectangle(point + w / 2, equation((point + 5) / 10 ), 1, 1,{ 
+      isStatic: true,
+      render: {
+        strokeStyle: 'blue'
+      } 
+    }))
   })
   console.log(points)
   Matter.World.add(engine.world, points)
