@@ -65,7 +65,7 @@ async function bringSallyUp() {
     mikePos = mike.src.split("images/")[1];
     if (gobPos == "sarabacharMid.png"){
         waitTime = 200;
-        if(count == 1 && down && text.src.split("images/")[1] != "defeat.png"){
+        if(count == 29 && down && text.src.split("images/")[1] != "defeat.png"){
             waitTime = 1000;
             gobPos = "sarabacharDefeat1.png";
             victory();
@@ -175,7 +175,7 @@ function keyDownHandler(e){
             mike.src = "images\\mikeUp.png";
         }, 200);
     }
-    else{
+    else if(gobPos != "sarabacharDefeat1.png" && gobPos != "sarabacharDefeat2.png"){
         penalty();
     }
 
@@ -185,7 +185,7 @@ function victory(){
     setTimeout(function(){
         document.removeEventListener("keydown", keyDownHandler);
         key.style.visibility = "hidden";
-    }, 1600);
+    }, 2000);
     setTimeout(function(){
         document.getElementsByTagName("audio")[0].src = "audio\\Boss Win - WarioWare, Inc. Mega Microgames! (OST).ogg";
         document.getElementsByTagName("audio")[0].loop=false

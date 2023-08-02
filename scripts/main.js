@@ -11,7 +11,7 @@ function start(){
     showText(script[0]);
 }
 
-function showText(text) {
+async function showText(text) {
     if (text[0] === '/'){
         document.addEventListener('mousedown', clickToContinue);
         document.addEventListener('keydown', clickToContinue);
@@ -32,6 +32,7 @@ function showText(text) {
         waitForInput();
     }
     else if(text[0] === '$'){
+        remainingText = text;
         if(eventCount == 0){
             document.body.classList.add('transition');
             document.body.style.backgroundColor = "azure";
@@ -40,6 +41,14 @@ function showText(text) {
                 document.body.style.background = "url('images/bg3.jpg')";
                 setTimeout(function () { showText(text.slice(1)) }, 50)
             }, 1000)
+            eventCount++;
+        }
+        else if(eventCount == 2){
+            startGlitching();
+            eventCount++;
+        }
+        else if(eventCount == 3){
+            flashScreen();
             eventCount++;
         }
         else{

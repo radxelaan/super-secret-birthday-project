@@ -14,6 +14,18 @@
     overflow-y: auto;
 }
 
+#console2 {
+    position: absolute;
+    width: 98%;
+    height: 400px;
+    top:500px;
+    border-style: solid;
+    border-color: rgb(54, 54, 54);
+    padding: 15px;
+    overflow-y: auto;
+    visibility: hidden;
+}
+
 .transition{
     -webkit-transition: background-color 1s ease-out;
     -moz-transition: background-color 1s ease-out;

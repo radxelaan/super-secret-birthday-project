@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name = "viewport" content="width=devide-width, initial-scale=1">
+        <title>One fateful day</title>
+        <link rel="stylesheet" type="text/css" href="styles/jam.css" />
+        <link rel="stylesheet" type="text/css" href="styles/main.css" />
+        <script type="text/javascript" src="scripts/jam.js"></script>
+        <script type="text/javascript" src="scripts/main.js"></script>
+    </head>
+    <body onload="" style="background-color: rgb(238, 151, 216);">
+        <div id="confirm">
+            <span style="display:block; text-align:center; font-size:24px; ">Are you sure?</span><br/>
+            <button type="button" onclick="hidePopup()" style="margin-top: 5rem;">Um... Not really</button>
+            <button type="button" onclick="hidePopup()" style="float: right; margin-top: 5rem;">Let me think about it</button>
+        </div>
+        <div  id="console2" style="background-color: black;">
+            <span id="text" class="textStyle"></span>
+        </div>
+        <div  id="flash">
+        </div>
+        <div id="form">
+            <p style="font-size: 24px;">
+               Which theme do you like the most?
+               <span style="font-size:30px; color: red;">*</span>
+            <p>
+            <br/>
+            <form >
+                <input type="radio" name="theme" value="Space">
+                <label for="html">Space</label><br>
+                <input type="radio" name="theme" value="Board Games">
+                <label for="html">Board Games</label><br>
+                <input type="radio" name="theme" value="Morse Code">
+                <label for="html">Morse Code</label><br>
+                <input type="radio" name="theme" value="Role-Playing">
+                <label for="html">Role-Playing</label><br>
+                <input type="radio" name="theme" value="Trivia">
+                <label for="html">Trivia</label><br>
+                <input type="radio" name="theme" value="Time Travel">
+                <label for="html">Time Travel</label><br>
+                <input type="radio" name="theme" value="Working Out">
+                <label for="html">Working Out</label><br>
+        </div>
+        <br/>
+        <div id='footer'>
+            <button type="button" onclick="showPopup()">Submit</button>
+            <a href="" style="text-decoration:none; font-weight: bold; color: purple; margin-left: 30rem;">Clear form</a>
+            <div style="text-align: center; font-size: 14px; color: rgb(46, 46, 46); margin-top: 5%;">
+                <span style="text-align: center; display: inline;">This form was created inside the domain of Brackeys.</span>
+                <a href="" style="color: rgb(46, 46, 46); display: inline;">Report abuse</a>
+                <p style="font-size: 24px; margin-top: 7%;">Google Forms</p>
+            </div>
+        </div>
+    </body>
+</html>

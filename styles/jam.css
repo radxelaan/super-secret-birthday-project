@@ -1,0 +1,75 @@
+@font-face {
+    font-family: 'PressStart';
+    src: url('PressStart2P-Regular.ttf') format("truetype"), url('PressStart2P-Regular.otf') format("opentype"), url('PressStart2P-Regular.woff') format("woff");
+  }
+
+@font-face {
+  font-family: 'RubikGlitch';
+  src: url('RubikGlitch-Regular.ttf') format("truetype"), url('RubikGlitch-Regular.otf') format("opentype"), url('RubikGlitch-Regular.woff') format("woff");
+}
+
+#form{
+  font-family: 'PressStart';
+  border: 1px solid rgb(170, 170, 170);
+  border-radius: 6px;
+  width: max-content;
+  display: block;
+  margin-top: 5rem;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  padding: 2rem;
+}
+
+input{
+  margin: 10px;
+}
+
+#footer{
+  width: max-content;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button{
+  font-family: Arial, Helvetica, sans-serif; font-size:16px; cursor: pointer; border:none; border-radius: 4px; color: white; background-color: purple; padding: 8px;
+}
+
+#confirm{
+  position: absolute;
+  border: 1px solid rgb(170, 170, 170);
+  border-radius: 6px; 
+  display: block;
+  margin-top: 6rem;
+  margin-left: 35%;
+  background-color: white;
+  padding: 2rem;
+  visibility: hidden;
+  width: 25%;
+  height: 25%;
+  z-index: 9999; 
+}
+
+span{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#flash{
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: rgba(255, 255, 255);
+  visibility: hidden;
+  opacity: 0;
+  
+}
+
+#flash.transition{
+  opacity: 1;
+  transition: all 1s;
+}
