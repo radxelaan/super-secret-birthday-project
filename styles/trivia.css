@@ -1,7 +1,7 @@
 body {
     font-family: "Courier New";
     /* background: #004aad; */
-    background-image: url("/images/Trivia_Background.jpg");
+    background-image: url("../images/Trivia_Background.jpg");
     background-size: cover;
     margin: 0;
     display: flex;
