@@ -115,7 +115,6 @@ function parseEquation (str) {
 }
 
 let ball = Matter.Bodies.circle(100,100,20)
-Matter.Body.setMass(ball, 10000)
 let platform = Matter.Bodies.rectangle(100, 120, 50, 5, { isStatic: true })
 
 const xAxis = Matter.Bodies.rectangle(w / 2, h / 2, h, 1, { isStatic: true })
@@ -159,10 +158,29 @@ Matter.World.add(engine.world, bodies)
 Matter.Runner.run(engine)
 Matter.Render.run(render)
 
+Matter.Events.on(engine, 'afterUpdate', function(){
+  if (ball.position.x > w || ball.position.y > h || ball.position.x < 0 || ball.position.y < 0) {
+    Matter.World.remove(engine.world, ball)
+    ball = Matter.Bodies.circle(100,100,20)
+    Matter.World.add(engine.world, ball)
+    Matter.World.add(engine.world, platform)
+  }
+})
+
 document.querySelector('#submit').addEventListener("click", function () {
   eq = `(${parseEquation(document.querySelector('#equation').value)})`
   equations.push(eq)
   lines.push(plot(eq))
   Matter.World.add(engine.world, lines[lines.length - 1])
+})
+
+document.querySelector('#start').addEventListener("click", function () {
   Matter.World.remove(engine.world, platform)
+})
+
+document.querySelector('#clear').addEventListener("click", function () {
+  lines.forEach(line => {
+    Matter.World.remove(engine.world, line)
+  })
+  lines = []
 })
