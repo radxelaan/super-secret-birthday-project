@@ -1,5 +1,5 @@
-h = window.innerHeight
-w = window.innerWidth
+h = window.innerHeight - 40
+w = window.innerWidth - 20
 engine = Matter.Engine.create()
 render = Matter.Render.create({
   element: document.body,
@@ -20,9 +20,13 @@ let scale_factor = 70
 let points = []
 let lines = []
 const equations = []
+const colors = ['#20bda8', '#8b20bd', '#8b20bd', '#bd3520', '#b8bd20', '#38bd20', '#bd208e', '#4520bd']
 
 function equation(x, eq) {
-  return eval(eq)
+  try {
+    return eval(eq); 
+} catch (e) {}
+  
 }
 
 function scaleLinesX(){
@@ -64,6 +68,7 @@ function plot(eq) {
     const x2 = x[i] + w / 2
     const y1 = h - equation(x[i-1]/scale_factor, eq)*scale_factor - h / 2
     const y2 = h - equation(x[i]/scale_factor, eq)*scale_factor - h / 2
+    const c = Math.floor(Math.random() * colors.length)
     const point = Matter.Bodies.rectangle(x1, y1, Math.sqrt((x2-x1)**2 + (y2-y1)**2), 1,{ 
       isStatic: true,
       render: {
@@ -77,6 +82,18 @@ function plot(eq) {
   }
   lines.push(p)
   return p
+}
+
+function parseEquation (str) {
+  let equation = str.toLowerCase()
+  equation = equation.replace('sin', 'Math.sin')
+  equation = equation.replace('cos', 'Math.cos')
+  equation = equation.replace('arctan', 'Math.atan')
+  equation = equation.replace('tan', 'Math.tan')
+  equation = equation.replace('math', 'Math')
+  equation = equation.replace('pi', 'Math.PI')
+  equation = equation.replace('^', '**')
+  return equation
 }
 
 let ball = Matter.Bodies.circle(100,100,20)
@@ -109,7 +126,6 @@ document.querySelector('#zoom').addEventListener("click", function () {
   lines.forEach(line => {
     Matter.World.remove(engine.world, line)
   })
-  console.log(lines)
   scale_factor+=1
   linesX = scaleLinesX()
   linesY = scaleLinesY()
@@ -124,10 +140,10 @@ document.querySelector('#zoom').addEventListener("click", function () {
   })
 })
  
-bodies.push(ball)
 bodies.push(platform)
 bodies.push(xAxis)
 bodies.push(yAxis)
+bodies.push(ball)
 
 Matter.World.add(engine.world, bodies)
 
@@ -135,7 +151,7 @@ Matter.Runner.run(engine)
 Matter.Render.run(render)
 
 document.querySelector('#submit').addEventListener("click", function () {
-  eq = `(${document.querySelector('#equation').value})`
+  eq = `(${parseEquation(document.querySelector('#equation').value)})`
   equations.push(eq)
   lines.push(plot(eq))
   Matter.World.add(engine.world, lines[lines.length - 1])
