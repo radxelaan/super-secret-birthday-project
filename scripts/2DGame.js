@@ -59,14 +59,22 @@ function scaleLinesY(){
 
 function plot(eq) {
   const p = []
-  x.forEach(point => {
-    p.push(Matter.Bodies.rectangle(point + w / 2, h - equation(point/scale_factor, eq)*scale_factor - h/2, 1, 1,{ 
+  for (let i = 1; i < x.length; i++){
+    const x1 = x[i-1] + w / 2
+    const x2 = x[i] + w / 2
+    const y1 = h - equation(x[i-1]/scale_factor, eq)*scale_factor - h / 2
+    const y2 = h - equation(x[i]/scale_factor, eq)*scale_factor - h / 2
+    const point = Matter.Bodies.rectangle(x1, y1, Math.sqrt((x2-x1)**2 + (y2-y1)**2), 1,{ 
       isStatic: true,
       render: {
+        fillStyle: 'blue',
         strokeStyle: 'blue'
       } 
-    }))
-  })
+    })
+    Matter.Body.rotate(point, Math.atan((y2-y1)/(x2-x1)))
+
+    p.push(point)
+  }
   lines.push(p)
   return p
 }
