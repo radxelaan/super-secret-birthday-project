@@ -19,7 +19,7 @@ bodies = []
 let scale_factor = 70
 let points = []
 let lines = []
-const equations = []
+let equations = []
 
 function equation(x, eq) {
   try {
@@ -76,10 +76,10 @@ function plot(eq) {
         strokeStyle: 'blue'
       } 
     })
+    point.friction = 0.2
     Matter.Body.rotate(point, Math.atan((y2-y1)/(x2-x1)))
     p.push(point)
   }
-  lines.push(p)
   return p
 }
 
@@ -114,7 +114,8 @@ function parseEquation (str) {
   return equation
 }
 
-let ball = Matter.Bodies.circle(100,100,20)
+let ball = Matter.Bodies.circle(100,100,15)
+//ball.friction = 0.5
 let platform = Matter.Bodies.rectangle(100, 120, 50, 5, { isStatic: true })
 
 const xAxis = Matter.Bodies.rectangle(w / 2, h / 2, h, 1, { isStatic: true })
@@ -159,9 +160,10 @@ Matter.Runner.run(engine)
 Matter.Render.run(render)
 
 Matter.Events.on(engine, 'afterUpdate', function(){
-  if (ball.position.x > w || ball.position.y > h || ball.position.x < 0 || ball.position.y < 0) {
+  if (ball.position.x > w + 30|| ball.position.y > h + 30|| ball.position.x < - 30|| ball.position.y < -30) {
     Matter.World.remove(engine.world, ball)
-    ball = Matter.Bodies.circle(100,100,20)
+    ball = Matter.Bodies.circle(100,100,15)
+    //ball.friction = 0
     Matter.World.add(engine.world, ball)
     Matter.World.add(engine.world, platform)
   }
@@ -183,4 +185,12 @@ document.querySelector('#clear').addEventListener("click", function () {
     Matter.World.remove(engine.world, line)
   })
   lines = []
+  equations = []
+})
+
+document.querySelector('#undo').addEventListener("click", function () {
+  if(lines.length){
+    Matter.World.remove(engine.world, lines.pop())
+    equations.pop()
+  }
 })
