@@ -20,12 +20,13 @@ let scale_factor = 70
 let points = []
 let lines = []
 const equations = []
-const colors = ['#20bda8', '#8b20bd', '#8b20bd', '#bd3520', '#b8bd20', '#38bd20', '#bd208e', '#4520bd']
 
 function equation(x, eq) {
   try {
     return eval(eq); 
-} catch (e) {}
+} catch (e) {
+  console.log(eq)
+}
   
 }
 
@@ -68,7 +69,6 @@ function plot(eq) {
     const x2 = x[i] + w / 2
     const y1 = h - equation(x[i-1]/scale_factor, eq)*scale_factor - h / 2
     const y2 = h - equation(x[i]/scale_factor, eq)*scale_factor - h / 2
-    const c = Math.floor(Math.random() * colors.length)
     const point = Matter.Bodies.rectangle(x1, y1, Math.sqrt((x2-x1)**2 + (y2-y1)**2), 1,{ 
       isStatic: true,
       render: {
@@ -77,26 +77,45 @@ function plot(eq) {
       } 
     })
     Matter.Body.rotate(point, Math.atan((y2-y1)/(x2-x1)))
-
     p.push(point)
   }
   lines.push(p)
   return p
 }
 
+function rerender() {
+  Matter.World.remove(engine.world, linesX)
+  Matter.World.remove(engine.world, linesY)
+  lines.forEach(line => {
+    Matter.World.remove(engine.world, line)
+  })
+  linesX = scaleLinesX()
+  linesY = scaleLinesY()
+  lines = []
+  equations.forEach(equation => {
+    lines.push(plot(equation))
+  })
+  Matter.World.add(engine.world, linesX)
+  Matter.World.add(engine.world, linesY)
+  lines.forEach(line => {
+    Matter.World.add(engine.world, line)
+  })
+}
+
 function parseEquation (str) {
   let equation = str.toLowerCase()
-  equation = equation.replace('sin', 'Math.sin')
-  equation = equation.replace('cos', 'Math.cos')
-  equation = equation.replace('arctan', 'Math.atan')
-  equation = equation.replace('tan', 'Math.tan')
-  equation = equation.replace('math', 'Math')
-  equation = equation.replace('pi', 'Math.PI')
-  equation = equation.replace('^', '**')
+  equation = equation.replaceAll('sin', 'Math.sin')
+  equation = equation.replaceAll('cos', 'Math.cos')
+  equation = equation.replaceAll('arctan', 'Math.atan')
+  equation = equation.replaceAll('tan', 'Math.tan')
+  equation = equation.replaceAll('math', 'Math')
+  equation = equation.replaceAll('pi', 'Math.PI')
+  equation = equation.replaceAll('^', '**')
   return equation
 }
 
 let ball = Matter.Bodies.circle(100,100,20)
+Matter.Body.setMass(ball, 10000)
 let platform = Matter.Bodies.rectangle(100, 120, 50, 5, { isStatic: true })
 
 const xAxis = Matter.Bodies.rectangle(w / 2, h / 2, h, 1, { isStatic: true })
@@ -121,25 +140,15 @@ let linesY = scaleLinesY()
 Matter.World.add(engine.world, linesY)
 
 document.querySelector('#zoom').addEventListener("click", function () {
-  Matter.World.remove(engine.world, linesX)
-  Matter.World.remove(engine.world, linesY)
-  lines.forEach(line => {
-    Matter.World.remove(engine.world, line)
-  })
-  scale_factor+=1
-  linesX = scaleLinesX()
-  linesY = scaleLinesY()
-  lines = []
-  equations.forEach(equation => {
-    lines.push(plot(equation))
-  })
-  Matter.World.add(engine.world, linesX)
-  Matter.World.add(engine.world, linesY)
-  lines.forEach(line => {
-    Matter.World.add(engine.world, line)
-  })
+  scale_factor+=2
+  rerender()
 })
  
+document.querySelector('#unzoom').addEventListener("click", function () {
+  scale_factor-=2
+  rerender()
+})
+
 bodies.push(platform)
 bodies.push(xAxis)
 bodies.push(yAxis)
