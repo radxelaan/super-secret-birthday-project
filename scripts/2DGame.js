@@ -64,11 +64,11 @@ function scaleLinesY(){
 
 function plot(eq) {
   const p = []
-  for (let i = 1; i < x.length; i++){
+  for (let i = (eq.minX*scale_factor) + w/2; i < (eq.maxX*scale_factor) + w/2; i++){
     const x1 = x[i-1] + w / 2
     const x2 = x[i] + w / 2
-    const y1 = h - equation(x[i-1]/scale_factor, eq)*scale_factor - h / 2
-    const y2 = h - equation(x[i]/scale_factor, eq)*scale_factor - h / 2
+    const y1 = h - equation(x[i-1]/scale_factor, eq.equation)*scale_factor - h / 2
+    const y2 = h - equation(x[i]/scale_factor, eq.equation)*scale_factor - h / 2
     const point = Matter.Bodies.rectangle(x1, y1, Math.sqrt((x2-x1)**2 + (y2-y1)**2), 1,{ 
       isStatic: true,
       render: {
@@ -76,7 +76,7 @@ function plot(eq) {
         strokeStyle: 'blue'
       } 
     })
-    point.friction = 0.5
+    point.friction = 0.1
     Matter.Body.rotate(point, Math.atan((y2-y1)/(x2-x1)))
     p.push(point)
   }
@@ -120,10 +120,7 @@ function createBall() {
     friction: 0.7,
     frictionStatic: 0,
     frictionAir: 0.005,
-    restitution: 0.3,
-    ground: false,
-    jumpCD: 0,
-    portal: -1, // 0,1 for each portal  and -1 for no portal
+    restitution: 0.1,
     collisionFilter:{
       category: 1,
       group: 1,
@@ -195,7 +192,11 @@ Matter.Events.on(engine, 'afterUpdate', function(){
 })
 
 document.querySelector('#submit').addEventListener("click", function () {
-  eq = `(${parseEquation(document.querySelector('#equation').value)})`
+  const eq = {
+    equation: `(${parseEquation(document.querySelector('#equation').value)})`,
+    minX: document.querySelector('#minX').value  ? document.querySelector('#minX').value : - w / scale_factor,
+    maxX: document.querySelector('#maxX').value  ? document.querySelector('#maxX').value : w / scale_factor,
+  }
   equations.push(eq)
   lines.push(plot(eq))
   Matter.World.add(engine.world, lines[lines.length - 1])
@@ -225,13 +226,13 @@ const keyHandlers = {
     Matter.Body.applyForce(ball, {
       x: ball.position.x,
       y: ball.position.y
-    }, {x: 0.0013, y: 0})
+    }, {x: 0.0007, y: 0})
   },
   KeyA: () => {
     Matter.Body.applyForce(ball, {
       x: ball.position.x,
       y: ball.position.y
-    }, {x: -0.0013, y: 0})
+    }, {x: -0.0007, y: 0})
   }
 }
 
