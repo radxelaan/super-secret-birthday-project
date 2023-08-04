@@ -76,7 +76,7 @@ function plot(eq) {
         strokeStyle: 'blue'
       } 
     })
-    point.friction = 0.2
+    point.friction = 0.5
     Matter.Body.rotate(point, Math.atan((y2-y1)/(x2-x1)))
     p.push(point)
   }
@@ -114,8 +114,34 @@ function parseEquation (str) {
   return equation
 }
 
-let ball = Matter.Bodies.circle(100,100,15)
-//ball.friction = 0.5
+function createBall() {
+  let ball = Matter.Bodies.circle(100,100,25,{
+    density: 0.001,
+    friction: 0.7,
+    frictionStatic: 0,
+    frictionAir: 0.005,
+    restitution: 0.3,
+    ground: false,
+    jumpCD: 0,
+    portal: -1, // 0,1 for each portal  and -1 for no portal
+    collisionFilter:{
+      category: 1,
+      group: 1,
+      mask: 1
+    },
+    render:{
+      sprite:{
+        texture: 'images/hamsterMike.png',
+        xScale: 0.15,
+        yScale: 0.15
+      }
+    },
+  })
+  ball.collisionFilter.group = -1
+  return ball
+}
+
+let ball = createBall()
 let platform = Matter.Bodies.rectangle(100, 120, 50, 5, { isStatic: true })
 
 const xAxis = Matter.Bodies.rectangle(w / 2, h / 2, h, 1, { isStatic: true })
@@ -162,8 +188,7 @@ Matter.Render.run(render)
 Matter.Events.on(engine, 'afterUpdate', function(){
   if (ball.position.x > w + 30|| ball.position.y > h + 30|| ball.position.x < - 30|| ball.position.y < -30) {
     Matter.World.remove(engine.world, ball)
-    ball = Matter.Bodies.circle(100,100,15)
-    //ball.friction = 0
+    ball = createBall()
     Matter.World.add(engine.world, ball)
     Matter.World.add(engine.world, platform)
   }
@@ -193,4 +218,33 @@ document.querySelector('#undo').addEventListener("click", function () {
     Matter.World.remove(engine.world, lines.pop())
     equations.pop()
   }
+})
+
+const keyHandlers = {
+  KeyD: () => {
+    Matter.Body.applyForce(ball, {
+      x: ball.position.x,
+      y: ball.position.y
+    }, {x: 0.0013, y: 0})
+  },
+  KeyA: () => {
+    Matter.Body.applyForce(ball, {
+      x: ball.position.x,
+      y: ball.position.y
+    }, {x: -0.0013, y: 0})
+  }
+}
+
+const keysDown = new Set();
+document.addEventListener("keydown", event => {
+  keysDown.add(event.code);
+});
+document.addEventListener("keyup", event => {
+  keysDown.delete(event.code);
+});
+
+Matter.Events.on(engine, "beforeUpdate", event => {
+  [...keysDown].forEach(k => {
+    keyHandlers[k]?.();
+  })
 })
