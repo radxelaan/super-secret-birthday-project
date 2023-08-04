@@ -14,7 +14,19 @@ let strikes = 0;
 let mikeFlag=false;
 let mikePos;
 
-function start(){
+function enterTavern(){
+    document.getElementById('flash2').classList.toggle('fadein');
+    setTimeout(function(){
+        cons = document.getElementById("console");
+        cons.style.visibility = 'visible';
+        script = ['test/ $'];
+        eventCount = 7;
+        start();
+    }, 2000);
+}
+
+function sally(){
+    cons.style.visibility = 'hidden';
     let audio = document.getElementsByTagName("audio")[0];
     audio.volume = '0.2';
     audio.src = 'audio\\Bring Sally Up - Push Up Challenge with Timer.ogg';
@@ -25,10 +37,13 @@ function loadedAudio(){
     mike = document.getElementById("mike");
     gob = document.getElementById("goblin");
     mike.src = "images\\mikeUp.png";
+    mike.style.visibility = 'visible';
+    gob.style.visibility = 'visible'; 
     mikePos = mike.src.split("images/")[1];
     let go = document.getElementById("go");
     mike.onload = function(){
         if(!mikeFlag){
+            go.style.visibility = 'visible';
             mikeFlag = true;
             setTimeout(function(){
                 go.src = "images\\4.png"
@@ -50,6 +65,12 @@ function loadedAudio(){
                                     go.style.visibility = "hidden";
                                     key = document.getElementById("key");
                                     key.style.visibility = "visible";
+                                    setTimeout(function(){
+                                        command = Math.floor(Math.random()*keyCodes.length);
+                                        key.innerHTML = keyLabels[command];
+                                    }, 1000);
+                                    setTimeout(function(){
+                                    }, 1000);
                                 }, 1000);
                             }, 1000);
                         }, 1000);
@@ -65,7 +86,7 @@ async function bringSallyUp() {
     mikePos = mike.src.split("images/")[1];
     if (gobPos == "sarabacharMid.png"){
         waitTime = 200;
-        if(count == 29 && down && text.src.split("images/")[1] != "defeat.png"){
+        if(count == 1 && down && ui.src.split("images/")[1] != "defeat.png"){
             waitTime = 1000;
             gobPos = "sarabacharDefeat1.png";
             victory();
@@ -85,12 +106,15 @@ async function bringSallyUp() {
         else if(gobPos == "sarabacharDown.png" && count>=1){
             waitTime = 2700;
             wait = true;
+            setTimeout(function(){
+                command = Math.floor(Math.random()*keyCodes.length);
+                key.innerHTML = keyLabels[command];
+            }, 3000);
         }
     }
     else{
         wait = false;
     }
-
     setTimeout(function(){
         if(!wait && gobPos == "sarabacharUp.png"){
             gob.src = "images\\sarabacharMid.png";
@@ -98,26 +122,25 @@ async function bringSallyUp() {
         else if (!wait && gobPos == "sarabacharMid.png" && !down){
             gob.src = "images\\sarabacharDown.png";
             setTimeout(function(){
-                command = Math.floor(Math.random()*keyCodes.length);
-                key.innerHTML = keyLabels[command];
-            }, 700);
+                key.innerHTML ='';
+            }, 350);
             setTimeout(function(){
                 down = true;
-                if(text.src.split("images/")[1] != "defeat.png" && mikePos == "mikeUp.png"){
+                if(ui.src.split("images/")[1] != "defeat.png" && mikePos == "mikeUp.png"){
                     penalty();
                 }
             }, 175);
         }
         else if (!wait && gobPos == "sarabacharMid.png"){
-            gob.src = "images\\sarabacharUp.png";
-            count++;
             setTimeout(function(){
                 command = Math.floor(Math.random()*keyCodes.length);
                 key.innerHTML = keyLabels[command];
             }, 700);
+            gob.src = "images\\sarabacharUp.png";
+            count++;
             setTimeout(function(){
                 down = false;
-                if(text.src.split("images/")[1] != "defeat.png" && mikePos == "mikeDown.png"){
+                if(ui.src.split("images/")[1] != "defeat.png" && mikePos == "mikeDown.png"){
                     penalty();
                 }
             }, 175);
@@ -148,15 +171,15 @@ function getReadyMike(){
 }
 
 function keyDownHandler(e){
-    let text = document.getElementById("text");
+    let ui = document.getElementById("ui");
     if(e.keyCode == keyCodes[command] && mikePos == "mikeUp.png" && !down){
         mikePos = "mikeDown.png";
         mike.src = "images\\mikeMid.png";
         key.style.backgroundColor = "lime";
-        text.src = "images\\good.png";
-        text.style.visibility = "visible";
+        ui.src = "images\\good.png";
+        ui.style.visibility = "visible";
         setTimeout(function(){
-            text.style.visibility = "hidden";
+            ui.style.visibility = "hidden";
         }, 400);
         setTimeout(function(){
             mike.src = "images\\mikeDown.png";
@@ -166,10 +189,10 @@ function keyDownHandler(e){
         mikePos = "mikeUp.png";
         mike.src = "images\\mikeMid.png";
         key.style.backgroundColor = "lime";
-        text.src = "images\\good.png";
-        text.style.visibility = "visible";
+        ui.src = "images\\good.png";
+        ui.style.visibility = "visible";
         setTimeout(function(){
-            text.style.visibility = "hidden";
+            ui.style.visibility = "hidden";
         }, 400);
         setTimeout(function(){
             mike.src = "images\\mikeUp.png";
@@ -189,15 +212,23 @@ function victory(){
     setTimeout(function(){
         document.getElementsByTagName("audio")[0].src = "audio\\Boss Win - WarioWare, Inc. Mega Microgames! (OST).ogg";
         document.getElementsByTagName("audio")[0].loop=false
-        text.style.visibility = "visible";
-        text.src = "images\\victory.png";
-        text.onload = function(){
-            text.style.width= "500px";
-            text.style.marginLeft= "40%";
+        ui.style.visibility = "visible";
+        ui.src = "images\\victory.png";
+        ui.onload = function(){
+            ui.style.width= "500px";
+            ui.style.marginLeft= "40%";
         }
         setTimeout(function(){
             document.getElementById('tattoo').style.visibility = 'visible';
-            document.getElementById('tattoo').classList.add('transition');
+            document.getElementById('tattoo').classList.add('transition-rotate');
+            setTimeout(function(){
+                let ui = document.getElementById('ui');
+                ui.style.visibility = 'visible';
+                ui.style.marginLeft = '30%';
+                ui.style.marginTop = '0%';
+                ui.src = 'images\\polarettiGet.png';
+                document.addEventListener('keydown', itemGet);
+            }, 1000);
         }, 3000);
     }, 13000 );
 }
@@ -208,11 +239,11 @@ function defeat(){
     setTimeout(function(){
         document.getElementsByTagName("audio")[0].src = "audio\\Boss Loss - WarioWare, Inc. Mega Microgames! (OST).ogg";
         document.getElementsByTagName("audio")[0].loop=false
-        text.style.visibility = "visible";
-        text.src = "images\\defeat.png";
-        text.onload = function(){
-            text.style.width= "500px";
-            text.style.marginLeft= "40%";
+        ui.style.visibility = "visible";
+        ui.src = "images\\defeat.png";
+        ui.onload = function(){
+            ui.style.width= "500px";
+            ui.style.marginLeft= "40%";
         }
     }, 300);
 }
@@ -220,12 +251,28 @@ function defeat(){
 function penalty(){
     strikes++;
     key.style.backgroundColor = "red";
-    text.src = "images\\wrong.png";
-    text.style.visibility = "visible";
+    ui.src = "images\\wrong.png";
+    ui.style.visibility = "visible";
     setTimeout(function(){
-        text.style.visibility = "hidden";
+        ui.style.visibility = "hidden";
     }, 200);
     if(strikes>=3){
         defeat();
     }
+}
+
+function nextChapter(){
+    document.getElementById('tattoo').classList.remove('transition-rotate');
+    document.getElementById('tattoo').style.visibility = 'hidden';
+    setTimeout(function(){
+        mike.style.visibility = 'hidden';
+        gob.style.visibility = 'hidden';
+        key.style.visibility = 'hidden';
+    }, 1000);
+    setTimeout(function(){
+        cons.style.visibility = 'visible';
+        document.getElementById('text').innerHTML = '';
+        script = ['test/ $'];
+        start();
+    }, 2000);
 }

@@ -1,5 +1,6 @@
 let count = 0;
 let corruptedText = ['S̶̪̙͙̬̈́́p̶̩̟̿̔a̵͇̔č̸̬͠ ̵̲̾ͅr̵̦̽š̴̨e̶̡͔͉͉̅̄̑̅ ̶̡̦͓͚͂̆͆Ċ̷̥̗͠ȯ̶̥̯̐d̵͇͝ē̶̻̯͍̙', 'B̶͎̙̗̣͝o̸̡͙̒̒͒a̴̧͍̻̥̕ȓ̶̫̦̹͚̿͠d̸͓̀̌ ̷̪̂̽̕͝G̷̼̖͑e̴̻͍͠ ̵̨̦̺͆̒Ṫ̶̝̭r̶̹̠̾̕a̴̢͔͍̺̍̊̄v̸̰͚͖̈́̎̈́e̴̺̞̎ĺ̴̝͘', 'M̵̡̪̒ö̵͍̲̻̫́͂r̸̲̰͓͙͝S̴̮̤̀̓̉͛p̸̹̫̥̕â̷̠̹̗͍̕c̵̢̹̭̝͆̔̀̚', 'R̴͕̙̦̆͝ȏ̷̫͙̑l̸̦̰̝̫̇̚i̶̫̮͑n̵̡̢͙̞̾̈́g̵̰̉͆̇̌-̷̦̀̇̐͑P̴̛̬͋͐̂͜l̸̫͌͝ǎ̶̡̯̰̯̌y̵̤̎̊͝Ö̴̡̮͓̞́ǘ̵͖̟̥̂̏͝ţ̸̼͐̄̆','v̴̛͕̈́ị̷̎͑T̸̳͆͋r̸͕̜͋i̶̼͖̺̊͆̈͊ą̸̼̣̟̿', 'T̷̈́̆͜ī̶̩ͅm̸̧̟̯̄̓̆͌͜ ̴̭͚͙͇̀͋̒͠G̷̡̹̤͂ä̶͈̦́m̸̛̤', 'k̵̰̜̟̻̑i̷̜̘͇̗͌͝͠ṇ̶̼͌ğ̶̰͍l̷̹͌ä̴̛͍̣̜́͋͜y̵͉͚̙̓̈i̸̘͔̜̙̎͌̉̚n̶̨͈̹̈́̓̽̉g̵̢̛̙̬͍̿̀'];
+let indecisiveness = ['Are you really sure?', 'Are you really, positively sure?', 'You don\'t seem that sure...', 'You are really indecisive aren\'t you?'];
 
 function showPopup(){
     if (document.querySelectorAll('input[type="radio"]:checked').length) {
@@ -9,11 +10,12 @@ function showPopup(){
 
 function hidePopup(){
     document.getElementById("confirm").style.visibility = 'hidden';
+    document.getElementById("sure").innerHTML = indecisiveness[count];
     count++;
+
     if(count>=5){
-        document.getElementById("console2").style.visibility = 'visible';
-        script = ['Urgh, every game jam these choices become more and more difficult to pick from.../I mean, it\'s as if they are specifically for me!/ I wish I could choose all of them./ That would make for an interesting game./$Uh oh... What\'s going on?/ $'];
-        eventCount=2;
+        document.getElementById("console").style.visibility = 'visible';
+        script = ['Urgh, with every game jam these choices become more and more difficult to pick from.../I mean, it\'s as if they are specifically picking me for the target audience!/ I wish I could choose all of them./ That would make for an interesting game./$Uh oh... What\'s going on?/ $'];
         start();
     }
 }
@@ -32,12 +34,4 @@ function startGlitching(){
         element.checked = true;
     });
     showText(remainingText.slice(1));
-}
-
-function flashScreen(){
-    document.getElementById('flash').style.visibility = "visible"
-    document.getElementById('flash').classList.toggle('transition');
-    setTimeout(function () { 
-        window.location.replace('chess.html');
-    }, 1200)
 }

@@ -90,6 +90,7 @@ body {
   position: absolute;
   left: 500px;
   top: 600px;
+  visibility: hidden;
 }
 
 .input-box {
@@ -113,4 +114,20 @@ body {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+}
+
+#mask{
+  position: absolute; margin-top: 25%; margin-left: 50%;
+  visibility: hidden;
+  width: 1px;
+  height: 1px;
+  z-index: 1;
+  transition:all 1.5s ease;
+}
+
+.transition-rotate{
+  -webkit-transform: rotate(720deg) scale(500);
+  -ms-transform: rotate(720deg) scale(500);
+  transform: rotate(720deg) scale(500);
+  z-index: 9999;
 }
