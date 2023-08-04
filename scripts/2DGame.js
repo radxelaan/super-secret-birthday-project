@@ -17,6 +17,7 @@ y = Array.from(Array(h).keys())
 y = y.map(point => { return point -= h / 2 })
 bodies = []
 let scale_factor = 70
+let sampling_rate = 4
 let points = []
 let lines = []
 let equations = []
@@ -64,10 +65,10 @@ function scaleLinesY(){
 
 function plot(eq) {
   const p = []
-  for (let i = (eq.minX*scale_factor) + w/2; i < (eq.maxX*scale_factor) + w/2; i++){
-    const x1 = x[i-1] + w / 2
+  for (let i = (eq.minX*scale_factor) + w/2 + sampling_rate; i < (eq.maxX*scale_factor) + w/2; i += sampling_rate){
+    const x1 = x[i-sampling_rate] + w / 2
     const x2 = x[i] + w / 2
-    const y1 = h - equation(x[i-1]/scale_factor, eq.equation)*scale_factor - h / 2
+    const y1 = h - equation(x[i-sampling_rate]/scale_factor, eq.equation)*scale_factor - h / 2
     const y2 = h - equation(x[i]/scale_factor, eq.equation)*scale_factor - h / 2
     const point = Matter.Bodies.rectangle(x1, y1, Math.sqrt((x2-x1)**2 + (y2-y1)**2), 1,{ 
       isStatic: true,
@@ -107,7 +108,6 @@ function parseEquation (str) {
   equation = equation.replaceAll('sin', 'Math.sin')
   equation = equation.replaceAll('cos', 'Math.cos')
   equation = equation.replaceAll('arctan', 'Math.atan')
-  equation = equation.replaceAll('tan', 'Math.tan')
   equation = equation.replaceAll('math', 'Math')
   equation = equation.replaceAll('pi', 'Math.PI')
   equation = equation.replaceAll('^', '**')
@@ -192,14 +192,17 @@ Matter.Events.on(engine, 'afterUpdate', function(){
 })
 
 document.querySelector('#submit').addEventListener("click", function () {
-  const eq = {
-    equation: `(${parseEquation(document.querySelector('#equation').value)})`,
-    minX: document.querySelector('#minX').value  ? document.querySelector('#minX').value : - w / scale_factor,
-    maxX: document.querySelector('#maxX').value  ? document.querySelector('#maxX').value : w / scale_factor,
+  const input = parseEquation(document.querySelector('#equation').value)
+  if (!equations.some(eq => eq.equation === input)){
+    const eq = {
+      equation: input,
+      minX: document.querySelector('#minX').value  ? document.querySelector('#minX').value : - w / scale_factor,
+      maxX: document.querySelector('#maxX').value  ? document.querySelector('#maxX').value : w / scale_factor,
+    }
+    equations.push(eq)
+    lines.push(plot(eq))
+    Matter.World.add(engine.world, lines[lines.length - 1])
   }
-  equations.push(eq)
-  lines.push(plot(eq))
-  Matter.World.add(engine.world, lines[lines.length - 1])
 })
 
 document.querySelector('#start').addEventListener("click", function () {
@@ -226,13 +229,13 @@ const keyHandlers = {
     Matter.Body.applyForce(ball, {
       x: ball.position.x,
       y: ball.position.y
-    }, {x: 0.0007, y: 0})
+    }, {x: 0.001, y: 0})
   },
   KeyA: () => {
     Matter.Body.applyForce(ball, {
       x: ball.position.x,
       y: ball.position.y
-    }, {x: -0.0007, y: 0})
+    }, {x: -0.001, y: 0})
   }
 }
 
