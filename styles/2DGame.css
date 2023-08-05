@@ -1,0 +1,33 @@
+input[type="text"]{
+    background-color: #26273b;
+    color: #41bf43;
+    margin: 3px;
+    padding: 6px 10px;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+button{
+    background-color: #29292c;
+    color: #41bf43;
+    margin: 3px;
+    padding: 3px 10px;
+    border: none;
+    outline: none;
+    border-radius: 25px;
+    vertical-align: bottom;
+}
+
+#equation{
+    width: 120px;
+}
+
+.range {
+    width: 20px;
+}
+
+.buttons {
+    float: right;
+}

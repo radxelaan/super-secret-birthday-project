@@ -1,4 +1,4 @@
-h = window.innerHeight - 40
+h = window.innerHeight - 60
 w = window.innerWidth - 20
 engine = Matter.Engine.create()
 render = Matter.Render.create({

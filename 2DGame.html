@@ -4,19 +4,20 @@
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="styles/2DGame.css" />
     </head>
-    <body bgcolor="#14151f">
-
-        <input type="text" class="input-box" id="equation">
-        <input type="text" class="input-box" id="minX" label="min x">
-        <input type="text" class="input-box" id="maxX" label="max x">
-        <button id="submit">Submit</button>
-
-        <button id="start">Start</button>
-        <button id="clear">Clear</button>
-        <button id="undo">Undo</button>
-        <button id="zoom">+</button>
-        <button id="unzoom">-</button>
-        <script src="scripts/matter.js"></script>
-        <script src="scripts/2DGame.js"></script>
+    <body bgcolor="#1a1b26">
+        
+        <div style="color:#41bf43;font-family: 'Courier New', Courier, monospace;">f(x)=
+            <input type="text" class="input-box" id="equation"> x &isin; (
+            <input type="text" class="range" placeholder="-&infin;" id="minX" label="min x"> ,
+            <input type="text" class="range" placeholder="+&infin;" id="maxX" label="max x"> )
+            <button id="submit"><img src="images/pencil.png" style="width: 20px;"></button>
+            <button class="buttons" id="zoom"><img src="images/plus.png" style="width: 20px;"></button>
+            <button class="buttons" id="unzoom"><img src="images/minus.png" style="width: 20px;"></button>
+            <button class="buttons" id="undo"><img src="images/undo.png" style="width: 20px;"></button>
+            <button class="buttons" id="clear"><img src="images/trash.png" style="width: 20px;"></button>
+            <button class="buttons" id="start"><img src="images/play.png" style="width: 20px;"></button>
+            <script src="scripts/matter.js"></script>
+            <script src="scripts/2DGame.js"></script>
+        </div>
     </body>
 </html>
