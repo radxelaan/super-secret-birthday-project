@@ -11,12 +11,14 @@ function enterChess(){
         cons = document.getElementById("console");
         cons.style.visibility = 'visible';
         script = ['test/ $'];
-        eventCount = 4;
+        eventCount = 5;
         start();
     }, 2000);
 }
 
 function createBoard(){
+    document.getElementsByTagName("audio")[0].src = "audio\\Undertale OST 036 - Dummy!.ogg";
+    document.getElementsByTagName("audio")[0].volume = '0.2';
     document.body.style.backgroundImage = 'url(images/table.jpg)';
     cons.style.visibility = 'hidden';
     const board = document.querySelector('.board');
@@ -25,7 +27,6 @@ function createBoard(){
     kasparov = document.getElementById("kasparov");
     kasparov.style.visibility = 'visible';
     document.getElementById('com').style.visibility = 'visible';
-    document.getElementsByTagName("audio")[0].volume = '0.4';
     let piece, row, rowcount = 0;
 
     for(let i=1; i<=64; i++){

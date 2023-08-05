@@ -21,6 +21,10 @@
   padding: 2rem;
 }
 
+.credit{
+  font-family: 'PressStart';
+}
+
 input{
   margin: 10px;
 }

@@ -18,7 +18,7 @@ function blink(image, time, counter){
         cons = document.getElementById("console");
         cons.style.visibility = 'visible';
         script = ['test/ $'];
-        eventCount = 9;
+        eventCount = 10;
         start();
     }, 2000);
   }

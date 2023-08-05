@@ -1,7 +1,7 @@
 body {
     font-family: "Courier New";
     /* background: #004aad; */
-    background-image: url("../images/Trivia_Background.jpg");
+    background-color: black;
     background-size: cover;
     margin: 0;
     display: flex;
@@ -16,8 +16,9 @@ body {
     border: 1px solid #ccc; /* Border around the questions */
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Box shadow effect */
-    position: relative;
+    position: absolute;
     overflow: hidden;
+    visibility: hidden;
   }
   .question {
     margin-bottom: 15px;
@@ -73,3 +74,39 @@ body {
       border: none;
       border-radius: 5px;
   }
+
+#host{
+    visibility: hidden; position: absolute; margin-top: -21%; margin-right: 5%; width: 400px; height: 400px;
+}
+
+#wine{
+    position: absolute; margin-top: 25%; margin-left: 50%;
+    visibility: hidden;
+    width: 1px;
+    height: 1px;
+    z-index: 1;
+    transition:all 1.5s ease;
+}
+
+#desk{
+  visibility: hidden; position: absolute; margin-top: 38%; margin-right: 70%;
+}
+
+#bottle{
+  visibility: hidden;
+  width: 1.4px;
+  height: 3.5px;
+  z-index: 1;
+  transition:all 1.5s ease;;
+}
+
+#ui{
+  margin-top: -35%; margin-left: 35%;
+}
+
+.transition-rotate{
+    -webkit-transform: rotate(740deg) scale(200);
+    -ms-transform: rotate(740deg) scale(200);
+    transform: rotate(740deg) scale(200);
+    z-index: 9999;
+}

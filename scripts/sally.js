@@ -20,7 +20,7 @@ function enterTavern(){
         cons = document.getElementById("console");
         cons.style.visibility = 'visible';
         script = ['test/ $'];
-        eventCount = 7;
+        eventCount = 8;
         start();
     }, 2000);
 }

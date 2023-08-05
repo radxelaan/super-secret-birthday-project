@@ -24,7 +24,7 @@ async function showText(text) {
     else if(text[0] === '#'){
         output.innerHTML += '<br/>';
         choices.push(text[1]);
-        setTimeout(function () { showText(text.slice(1)) }, 50)
+        setTimeout(function () { showText(text.slice(1)) }, 20)
     }
     else if(text[0] === '&'){
         output.innerHTML += '<br/>> ';
@@ -35,61 +35,97 @@ async function showText(text) {
     }
     else if(text[0] === '$'){
         remainingText = text;
-        console.log(eventCount)
         switch(eventCount) {
             case 0:
                 startGlitching();
                 break;
             case 1:
                 setTimeout(function () { 
-                    window.location.replace('chess.html');
+                    window.location.replace('trivia.html');
                 }, 1200)
                 flashScreen();
-                eventCount = 3;
                 break;
             case 2:
-
+                lightsOn();
+                break;
             case 3:
-
+                startQuiz();
+                break;
             case 4:
-                setTimeout(function () { createBoard() }, 1000);
+                flashScreen();
+                setTimeout(function () { 
+                    window.location.replace('chess.html');
+                }, 1200);
                 break;
             case 5:
-                victory();
+                setTimeout(function () { createBoard() }, 1000);
                 break;
             case 6:
+                victory();
+                break;
+            case 7:
                 flashScreen();
                 setTimeout(function () { 
                     window.location.replace('sally.html');
                 }, 1200);
                 break;
-            case 7:
+            case 8:
                 sally();
                 break;
-            case 8:
+            case 9:
                 flashScreen();
                 setTimeout(function () { 
                     window.location.replace('stars.html');
                 }, 1200);
                 break;
-            case 9:
+            case 10:
                 formVisible();
                 break;
-            case 10:
+            case 11:
                 getMask();
                 break;
-            case 11:
+            case 12:
                 flashScreen();
                 setTimeout(function () { 
                     window.location.replace('end.html');
                 }, 1200);
                 break;
+            case 13:
+                flashScreen();
+                setTimeout(function () { 
+                    document.getElementById('flash').classList.toggle('fadeout');
+                    document.getElementById('flash2').style.visibility = 'visible';
+                    setTimeout(function () { 
+                        rollCredits();
+                    }, 1000);
+                }, 2000);
+                break;
         }
         eventCount++;
     }
+    else if(text[0] === '+'){
+        flashScreen();
+        setTimeout(function () { 
+            document.getElementById('flash').classList.toggle('fadeout');
+            document.getElementById('flash2').style.visibility = 'visible';
+            setTimeout(function () { 
+                teleportToRoom();
+            }, 1000);
+        }, 2000);
+    }else if(text[0] === '-'){
+        flashScreen();
+        setTimeout(function () { 
+            document.getElementById('flash').classList.toggle('fadeout');
+            document.getElementById('flash2').style.visibility = 'visible';
+            setTimeout(function () { 
+                teleportToRoom2();
+            }, 1000);
+        }, 2000);
+    }
     else{
         output.innerHTML += text[0];
-        if (text.length > 1) setTimeout(function () { showText(text.slice(1)) }, 50)
+        cons.scrollTop = cons.scrollHeight;
+        if (text.length > 1) setTimeout(function () { showText(text.slice(1)) }, 20)
     }
 }
 
