@@ -10,6 +10,7 @@ render = Matter.Render.create({
   }
 })
 render.options.wireframes = false
+detector = Matter.Detector.create()
 eq = ''
 x = Array.from(Array(w).keys())
 x = x.map(point => { return point -= w / 2 })
@@ -26,6 +27,8 @@ let ball
 let platform
 let goal
 let movement = false
+let grounded = false
+
 
 
 function loadLevel(lvl) {
@@ -57,6 +60,17 @@ function loadLevel(lvl) {
       bodies = [ball, platform, goal, barrier]
       Matter.World.add(engine.world,bodies)
       break;
+    case 2:
+      equations = []
+      movement = false
+      ball = createBall(100, 550)
+      platform = Matter.Bodies.rectangle(100, 550 + 25, 50, 5, { isStatic: true })
+      goal = Matter.Bodies.circle(1300, 550, 15, { isStatic: true, render: { fillStyle: 'red' } })
+      barrier1 = Matter.Bodies.rectangle(550, h, 200, 700, { isStatic: true })
+      barrier2 = Matter.Bodies.rectangle(950, 0, 200, 700, { isStatic: true })
+      bodies = [ball, platform, goal, barrier1, barrier2]
+      Matter.World.add(engine.world,bodies)
+
   }
 
 }
@@ -177,6 +191,19 @@ function createBall(x, y) {
   return ball
 }
 
+function playerGroundCheck(event, ground) { 
+  const pairs = event.pairs
+  for (let i = 0, j = pairs.length; i != j; ++i) {
+    let pair = pairs[i];
+    if (pair.bodyA === ball) {
+      grounded = ground;
+    } else if (pair.bodyB === ball) {
+      grounded = ground;
+    }
+  }
+}
+
+
 
 const xAxis = Matter.Bodies.rectangle(w / 2, h / 2, h, 1, { isStatic: true })
 xAxis.collisionFilter = {
@@ -208,6 +235,7 @@ document.querySelector('#unzoom').addEventListener("click", function () {
   scale_factor-=2
   rerender()
 })
+
 
 Matter.World.add(engine.world, [xAxis, yAxis])
 loadLevel(level)
@@ -268,19 +296,39 @@ const keyHandlers = {
       x: ball.position.x,
       y: ball.position.y
     }, {x: -0.0015, y: 0})
+  },
+  Space: () => {
+    Matter.Body.applyForce(ball, {
+      x: ball.position.x,
+      y: ball.position.y
+    }, {x: 0, y: -0.05})
   }
 }
 
 const keysDown = new Set();
 document.addEventListener("keydown", event => {
-  keysDown.add(event.code);
+  if (event.code !== 'Space' || grounded) keysDown.add(event.code);
 });
 document.addEventListener("keyup", event => {
-  keysDown.delete(event.code);
+  keysDown.delete(event.code)
 });
 
 Matter.Events.on(engine, "beforeUpdate", event => {
   [...keysDown].forEach(k => {
-    if (movement) keyHandlers[k]?.();
+    if (movement) keyHandlers[k]?.()
+    if (k === 'Space') keysDown.delete(k)
   })
 })
+
+Matter.Events.on(engine, "collisionStart", function(event) {
+  playerGroundCheck(event, true)
+})
+
+Matter.Events.on(engine, "collisionActive", function(event) {
+  playerGroundCheck(event, true)
+})
+
+Matter.Events.on(engine, 'collisionEnd', function(event) {
+  playerGroundCheck(event, false);
+})
+
