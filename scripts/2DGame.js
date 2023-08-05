@@ -45,7 +45,13 @@ function loadLevel(lvl) {
       ball = createBall(100, 100) 
       ball.isStatic = true
       platform = Matter.Bodies.rectangle(100, 125, 50, 5, { isStatic: true })
-      goal = Matter.Bodies.circle(1100, 500, 15, { isStatic: true, render: { fillStyle: 'red' } })
+      goal = Matter.Bodies.circle(1100, 500, 15, { isStatic: true, render:{
+        sprite:{
+          texture: 'images/portal.png',
+          xScale: 0.15,
+          yScale: 0.15
+        }
+      } })
       bodies = [ball, platform, goal]
       Matter.World.add(engine.world,bodies)
       break;
@@ -55,8 +61,14 @@ function loadLevel(lvl) {
       ball = createBall(100, h/2) 
       ball.isStatic = true
       platform = Matter.Bodies.rectangle(100, h/2 + 25, 50, 5, { isStatic: true })
-      goal = Matter.Bodies.circle(1100, h/2, 15, { isStatic: true, render: { fillStyle: 'red' } })
-      barrier = Matter.Bodies.rectangle(w/2, h/2, 350, 350, { isStatic: true })
+      goal = Matter.Bodies.circle(1100, h/2, 15, { isStatic: true, render:{
+        sprite:{
+          texture: 'images/portal.png',
+          xScale: 0.15,
+          yScale: 0.15
+        }
+      } })
+      barrier = Matter.Bodies.rectangle(w/2, h/2, 350, 350, { isStatic: true, render: { fillStyle: '#282930' } })
       bodies = [ball, platform, goal, barrier]
       Matter.World.add(engine.world,bodies)
       break;
@@ -65,9 +77,15 @@ function loadLevel(lvl) {
       movement = false
       ball = createBall(100, 550)
       platform = Matter.Bodies.rectangle(100, 550 + 25, 50, 5, { isStatic: true })
-      goal = Matter.Bodies.circle(1300, 550, 15, { isStatic: true, render: { fillStyle: 'red' } })
-      barrier1 = Matter.Bodies.rectangle(550, h, 200, 700, { isStatic: true })
-      barrier2 = Matter.Bodies.rectangle(950, 0, 200, 700, { isStatic: true })
+      goal = Matter.Bodies.circle(1300, 550, 15, { isStatic: true, render:{
+        sprite:{
+          texture: 'images/portal.png',
+          xScale: 0.15,
+          yScale: 0.15
+        }
+      } })
+      barrier1 = Matter.Bodies.rectangle(550, h, 200, 700, { isStatic: true, render: { fillStyle: '#282930' } })
+      barrier2 = Matter.Bodies.rectangle(950, 0, 200, 700, { isStatic: true, render: { fillStyle: '#282930' } })
       bodies = [ball, platform, goal, barrier1, barrier2]
       Matter.World.add(engine.world,bodies)
 
