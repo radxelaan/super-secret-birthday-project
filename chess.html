@@ -6,16 +6,26 @@
         <title>Time travel chess</title>
         <link rel="stylesheet" type="text/css" href="styles\chess.css" />
         <script type="text/javascript" src="scripts/chess challenge.js"></script>
+        <link rel="stylesheet" type="text/css" href="styles/main.css" />
+        <script type="text/javascript" src="scripts/main.js"></script>
     </head>
-    <body onload="createBoard()" style="background-image : url('images/table.jpg')">
+    <body onload="enterChess()" style="background-image : url('images/office.jpg')">
         <img id="kasparov" class="profile" draggable="false" src="images\kasparov1.jpg" style="margin-left: 4rem;">
-        <img class="profile" draggable="false" src="images\deep blue.png" style="margin-left: 80%; margin-top: 27%;">
+        <img id="com" class="profile" draggable="false" src="images\deep blue.png" style="margin-left: 80%; margin-top: 27%;">
         <img id="paper" src="images/paper.jpg">
+        <img id="ui" src="" style="width: 35rem; height: 10rem;">
         <div class="board"></div>
         <audio autoplay loop>
             <source src="audio\Undertale OST 036 - Dummy!.ogg" type="audio/ogg">
           Your browser does not support the audio element.
         </audio> 
+        <div  id="console" style="background-color: black;">
+            <span id="text" class="textStyle"></span>
+        </div>
+        <div  id="flash">
+        </div>
+        <div  id="flash2">
+        </div>
         <!--<iframe src="audio\Undertale OST 036 - Dummy!.ogg" allow="autoplay" style="display:none">
         </iframe>--> 
     </body>

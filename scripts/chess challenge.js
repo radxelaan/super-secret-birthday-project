@@ -4,10 +4,27 @@ let turn = 0;
 let validMoves = ['kl56','nl14', 'nl31', 'rl16'];
 let kasparov;
 
+function enterChess(){
+    document.getElementById('flash2').classList.toggle('fadein');
+    setTimeout(function(){
+        document.getElementById('flash2').style.visibility = 'hidden';
+        cons = document.getElementById("console");
+        cons.style.visibility = 'visible';
+        script = ['test/ $'];
+        eventCount = 4;
+        start();
+    }, 2000);
+}
+
 function createBoard(){
+    document.body.style.backgroundImage = 'url(images/table.jpg)';
+    cons.style.visibility = 'hidden';
     const board = document.querySelector('.board');
+    board.style.visibility = 'visible';
     board.addEventListener('mouseleave', mouseLeave);
     kasparov = document.getElementById("kasparov");
+    kasparov.style.visibility = 'visible';
+    document.getElementById('com').style.visibility = 'visible';
     document.getElementsByTagName("audio")[0].volume = '0.4';
     let piece, row, rowcount = 0;
 
@@ -179,7 +196,6 @@ function dropPiece(e){
     let strings = selectedPiece.src.split("_");
     let move = strings[1].split("t")[0];
     move += e.target.id ? e.target.id : e.target.parentElement.id;
-    console.log(move);
     if(move == validMoves[turn]){
         if((!e.target.className.includes("piece") || (e.target.className != selectedPiece.className))){
             if(e.target.className.includes("piece")){
@@ -221,13 +237,11 @@ function dropPiece(e){
             });
             document.getElementsByTagName("audio")[0].pause();
             setTimeout(function(){
-                document.getElementsByTagName("audio")[0].src = "audio\\Boss Win - WarioWare, Inc. Mega Microgames! (OST).ogg"
-                document.getElementsByTagName("audio")[0].loop=false
-                setTimeout(function(){
-                    document.getElementById('paper').style.visibility = 'visible';
-                    document.getElementById('paper').classList.add('transition');
-                }, 3000);
-            }, 500);
+                cons.style.visibility = 'visible';
+                document.getElementById('text').innerHTML = '';
+                script = ['(Kasparov forfiets...)/ $'];
+                start();
+            }, 3000);
         }
         turn++;
         
@@ -237,4 +251,41 @@ function dropPiece(e){
     selectedPiece.parentElement.style.opacity = 1;
     selectedPiece.style.opacity = 1;
     selectedPiece = null;
+}
+
+function victory(){
+    cons.style.visibility = 'hidden';
+    setTimeout(function(){
+        document.getElementsByTagName("audio")[0].src = "audio\\Boss Win - WarioWare, Inc. Mega Microgames! (OST).ogg"
+        document.getElementsByTagName("audio")[0].loop=false
+        setTimeout(function(){
+            document.getElementById('paper').style.visibility = 'visible';
+            document.getElementById('paper').classList.add('transition-rotate');
+            setTimeout(function(){
+                let ui = document.getElementById('ui');
+                ui.style.visibility = 'visible';
+                ui.style.marginLeft = '35%';
+                ui.style.marginTop = '0%';
+                ui.src = 'images\\pageGet.png';
+                document.addEventListener('keydown', itemGet);
+            }, 1000);
+        }, 3000);
+    }, 500);
+}
+
+function nextChapter(){
+    document.getElementById('paper').classList.remove('transition-rotate');
+    document.getElementById('paper').style.visibility = 'hidden';
+    setTimeout(function(){
+        kasparov.style.visibility = 'hidden';
+        document.getElementById('com').style.visibility = 'hidden';
+        document.getElementsByClassName('board')[0].style.visibility = 'hidden';
+        document.body.style.backgroundImage = 'url("images/office.jpg")';
+    }, 1000);
+    setTimeout(function(){
+        cons.style.visibility = 'visible';
+        document.getElementById('text').innerHTML = '';
+        script = ['test/ $'];
+        start();
+    }, 2000);
 }

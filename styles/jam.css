@@ -55,21 +55,3 @@ button{
 span{
   font-family: Arial, Helvetica, sans-serif;
 }
-
-#flash{
-  top: 0;
-  left: 0;
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  background: rgba(255, 255, 255);
-  visibility: hidden;
-  opacity: 0;
-  
-}
-
-#flash.transition{
-  opacity: 1;
-  transition: all 1s;
-}

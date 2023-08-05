@@ -4,10 +4,12 @@ let output;
 let remainingText;
 let waiting = false;
 let choices = Array();
-let eventCount = 0
+let eventCount = 0;
+let cons;
 
 function start(){
     output = document.getElementById("text");
+    cons = document.getElementById("console");
     showText(script[0]);
 }
 
@@ -33,29 +35,57 @@ async function showText(text) {
     }
     else if(text[0] === '$'){
         remainingText = text;
-        if(eventCount == 0){
-            document.body.classList.add('transition');
-            document.body.style.backgroundColor = "azure";
-            setTimeout(function () { 
-                document.body.classList.remove('transition');
-                document.body.style.background = "url('images/bg3.jpg')";
-                setTimeout(function () { showText(text.slice(1)) }, 50)
-            }, 1000)
-            eventCount++;
+        console.log(eventCount)
+        switch(eventCount) {
+            case 0:
+                startGlitching();
+                break;
+            case 1:
+                setTimeout(function () { 
+                    window.location.replace('chess.html');
+                }, 1200)
+                flashScreen();
+                eventCount = 3;
+                break;
+            case 2:
+
+            case 3:
+
+            case 4:
+                setTimeout(function () { createBoard() }, 1000);
+                break;
+            case 5:
+                victory();
+                break;
+            case 6:
+                flashScreen();
+                setTimeout(function () { 
+                    window.location.replace('sally.html');
+                }, 1200);
+                break;
+            case 7:
+                sally();
+                break;
+            case 8:
+                flashScreen();
+                setTimeout(function () { 
+                    window.location.replace('stars.html');
+                }, 1200);
+                break;
+            case 9:
+                formVisible();
+                break;
+            case 10:
+                getMask();
+                break;
+            case 11:
+                flashScreen();
+                setTimeout(function () { 
+                    window.location.replace('end.html');
+                }, 1200);
+                break;
         }
-        else if(eventCount == 2){
-            startGlitching();
-            eventCount++;
-        }
-        else if(eventCount == 3){
-            flashScreen();
-            eventCount++;
-        }
-        else{
-            setTimeout(function () { 
-                window.location.replace('chess.html');
-            }, 500)
-        }
+        eventCount++;
     }
     else{
         output.innerHTML += text[0];
@@ -80,7 +110,7 @@ function waitForInput(){
 }
 
 function clickToContinue(e){
-    if(e.button === 0 || e.key === 'Enter' || e.key === ' '){
+    if((e.button === 0 || e.key === 'Enter' || e.key === ' ') && cons.style.visibility == 'visible'){
         document.removeEventListener('mousedown', clickToContinue);
         document.removeEventListener('keydown', clickToContinue);
         if(output.innerHTML[output.innerHTML.length - 1] === '_'){
@@ -97,7 +127,6 @@ function selectChoice(e){
         document.removeEventListener('keydown', selectChoice);
         if(output.innerHTML[output.innerHTML.length - 1] === '_'){
             output.innerHTML = output.innerHTML.substring(0, output.innerHTML.length - 1);
-            console.log(output.innerHTML)
         }
         output.innerHTML += e.key + '<br/>';
         remainingText = remainingText.replace('&', outcomes[choices.indexOf(e.key)]);
@@ -108,3 +137,14 @@ function selectChoice(e){
     }
 }
 
+function itemGet(e){
+    if((e.button === 0 || e.key === 'Enter' || e.key === ' ') && cons.style.visibility == 'hidden'){
+        ui.style.visibility = 'hidden';
+        nextChapter();
+    }
+}
+
+function flashScreen(){
+    document.getElementById('flash').style.visibility = "visible"
+    document.getElementById('flash').classList.toggle('fadeout');
+}

@@ -6,6 +6,8 @@
         <title>Starry Night</title>
         <link rel="stylesheet" type="text/css" href="styles\stars.css" />
         <script type="text/javascript" src="scripts/stars.js"></script>
+        <link rel="stylesheet" type="text/css" href="styles\main.css" />
+        <script type="text/javascript" src="scripts/main.js"></script>
     </head>
     <body style="background-image: url('images/bg3.jpg');">
         <img id="star1" class="star" src="images/star.png" onload="blink(this, morse(code[0]), 0)">
@@ -19,13 +21,24 @@
         <img id="star6" class="star" src="images/star.png" onload="blink(this, morse('0'), 0)">
         <img id="star7" class="star" src="images/star.png" onload="blink(this, morse(code[3]), 0)">
         <img id="sparkle7" class="sparkle" src="images/shine.gif">
-        <form class= "form" name="codeInput" onsubmit="return validateForm()">
-            <input type="text" class="input-box" name="input1">
-            <input type="text" class="input-box" name="input2">
-            <input type="text" class="input-box" name="input3">
-            <input type="text" class="input-box" name="input4">
-            <input type="submit" class="submit-box" value="Submit">
-        </form>
+        <img id="mask" src="images/mask.png">
+        <img id="ui" src="" style="width: 35rem; height: 10rem;">
+        <div class="form">
+            <form style="display: inline;" name="codeInput">
+                <input type="text" class="input-box" name="input1">
+                <input type="text" class="input-box" name="input2">
+                <input type="text" class="input-box" name="input3">
+                <input type="text" class="input-box" name="input4">
+            </form>
+            <button style="display: inline;" id="submit" class="submit-box" type="button" onclick="validateForm()">Submit</button>
+        </div>
+        <div  id="console" style="background-color: black;">
+            <span id="text" class="textStyle"></span>
+        </div>
+        <div  id="flash">
+        </div>
+        <div  id="flash2">
+        </div>
     </body>
 
 </html>
