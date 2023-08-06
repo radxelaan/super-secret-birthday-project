@@ -22,7 +22,7 @@ let sampling_rate = 4
 let points = []
 let lines = []
 let equations = []
-let level = 0
+let level = 3
 let ball
 let platform
 let goal
@@ -45,7 +45,7 @@ function loadLevel(lvl) {
       ball = createBall(100, 100) 
       ball.isStatic = true
       platform = Matter.Bodies.rectangle(100, 125, 50, 5, { isStatic: true })
-      goal = Matter.Bodies.circle(1100, 500, 15, { isStatic: true, render:{
+      goal = Matter.Bodies.circle(1100, 500, 25, { isStatic: true, render:{
         sprite:{
           texture: 'images/portal.png',
           xScale: 0.15,
@@ -61,11 +61,11 @@ function loadLevel(lvl) {
       ball = createBall(100, h/2) 
       ball.isStatic = true
       platform = Matter.Bodies.rectangle(100, h/2 + 25, 50, 5, { isStatic: true })
-      goal = Matter.Bodies.circle(1100, h/2, 15, { isStatic: true, render:{
+      goal = Matter.Bodies.circle(1100, h/2, 25, { isStatic: true, render:{
         sprite:{
           texture: 'images/portal.png',
-          xScale: 0.15,
-          yScale: 0.15
+          xScale: 0.20,
+          yScale: 0.20
         }
       } })
       barrier = Matter.Bodies.rectangle(w/2, h/2, 350, 350, { isStatic: true, render: { fillStyle: '#282930' } })
@@ -77,18 +77,34 @@ function loadLevel(lvl) {
       movement = false
       ball = createBall(100, 550)
       platform = Matter.Bodies.rectangle(100, 550 + 25, 50, 5, { isStatic: true })
-      goal = Matter.Bodies.circle(1300, 550, 15, { isStatic: true, render:{
+      goal = Matter.Bodies.circle(1300, 550, 25, { isStatic: true, render:{
         sprite:{
           texture: 'images/portal.png',
-          xScale: 0.15,
-          yScale: 0.15
+          xScale: 0.20,
+          yScale: 0.20
         }
       } })
       barrier1 = Matter.Bodies.rectangle(550, h, 200, 700, { isStatic: true, render: { fillStyle: '#282930' } })
       barrier2 = Matter.Bodies.rectangle(950, 0, 200, 700, { isStatic: true, render: { fillStyle: '#282930' } })
       bodies = [ball, platform, goal, barrier1, barrier2]
       Matter.World.add(engine.world,bodies)
-
+      break;
+    case 3:
+      equations = []
+      movement = false
+      ball = createBall(100, 700)
+      platform = Matter.Bodies.rectangle(100, 700 + 25, 50, 5, { isStatic: true })
+      goal = Matter.Bodies.circle(100, 200, 25, { isStatic: true, render:{
+        sprite:{
+          texture: 'images/portal.png',
+          xScale: 0.20,
+          yScale: 0.20
+        }
+      } })
+      barrier = Matter.Bodies.rectangle(250, h/2, 900, 150, { isStatic: true, render: { fillStyle: '#282930' } })
+      bodies = [ball, platform, goal, barrier]
+      Matter.World.add(engine.world,bodies)
+      break;
   }
 
 }
