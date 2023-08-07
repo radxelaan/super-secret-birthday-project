@@ -39,6 +39,7 @@ button{
     margin-left:40%;
     margin-top: 0%;;
     margin-right: 0;
+    width: 350px;
 }
 
 #pi{
@@ -51,8 +52,8 @@ button{
 }
 
 .transition-rotate{
-    -webkit-transform: rotate(7200deg) scale(500);
-    -ms-transform: rotate(720deg) scale(500);
-    transform: rotate(720deg) scale(500);
+    -webkit-transform: rotate(7200deg) scale(550);
+    -ms-transform: rotate(720deg) scale(550);
+    transform: rotate(720deg) scale(550);
     z-index: 9999;
 }

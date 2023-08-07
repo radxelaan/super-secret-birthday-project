@@ -18,6 +18,7 @@ function enterTavern(){
     document.getElementById('flash2').classList.toggle('fadein');
     setTimeout(function(){
         cons = document.getElementById("console");
+        document.getElementById('flash2').style.visibility = 'hidden';
         cons.style.visibility = 'visible';
         script = ['test/ $'];
         eventCount = 8;
@@ -180,7 +181,7 @@ function keyDownHandler(e){
         ui.style.visibility = "visible";
         setTimeout(function(){
             ui.style.visibility = "hidden";
-        }, 400);
+        }, 800);
         setTimeout(function(){
             mike.src = "images\\mikeDown.png";
         }, 200);
@@ -219,16 +220,19 @@ function victory(){
             ui.style.marginLeft= "40%";
         }
         setTimeout(function(){
-            document.getElementById('tattoo').style.visibility = 'visible';
-            document.getElementById('tattoo').classList.add('transition-rotate');
-            setTimeout(function(){
-                let ui = document.getElementById('ui');
-                ui.style.visibility = 'visible';
-                ui.style.marginLeft = '30%';
-                ui.style.marginTop = '0%';
-                ui.src = 'images\\polarettiGet.png';
-                document.addEventListener('keydown', itemGet);
-            }, 1000);
+            ui.style.visibility = "hidden";
+            ui.src = 'images\\polarettiGet.png';
+            ui.onload = function(){
+                document.getElementById('tattoo').style.visibility = 'visible';
+                document.getElementById('tattoo').classList.add('transition-rotate');
+                setTimeout(function(){
+                    let ui = document.getElementById('ui');
+                    ui.style.visibility = 'visible';
+                    ui.style.marginLeft = '30%';
+                    ui.style.marginTop = '0%';
+                    document.addEventListener('keydown', itemGet);
+                }, 1000);
+            }
         }, 3000);
     }, 13000 );
 }
@@ -255,7 +259,7 @@ function penalty(){
     ui.style.visibility = "visible";
     setTimeout(function(){
         ui.style.visibility = "hidden";
-    }, 200);
+    }, 800);
     if(strikes>=3){
         defeat();
     }

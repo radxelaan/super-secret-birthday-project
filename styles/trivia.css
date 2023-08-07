@@ -64,10 +64,10 @@ body {
       display: flex;
       gap: 2%;
       flex-wrap: wrap;
-      justify-content: space-between;
+      justify-content: center;
   }
   .mike-images {
-      width: 49%;
+      width: 30%;
       box-sizing: border-box;
       object-fit: cover;
       display: inline-block;
@@ -76,7 +76,7 @@ body {
   }
 
 #host{
-    visibility: hidden; position: absolute; margin-top: -21%; margin-right: 5%; width: 400px; height: 400px;
+    visibility: hidden; position: absolute; margin-top: -18%; margin-right: 5%; width: 350px; height: 350px;
 }
 
 #wine{
@@ -89,13 +89,13 @@ body {
 }
 
 #desk{
-  visibility: hidden; position: absolute; margin-top: 38%; margin-right: 70%;
+  visibility: hidden; position: absolute; margin-top: 38%; margin-right: 70%; width: 650px;
 }
 
 #bottle{
   visibility: hidden;
-  width: 1.4px;
-  height: 3.5px;
+  width: 0.79px;
+  width: 2.3px;
   z-index: 1;
   transition:all 1.5s ease;;
 }
@@ -105,8 +105,8 @@ body {
 }
 
 .transition-rotate{
-    -webkit-transform: rotate(740deg) scale(200);
-    -ms-transform: rotate(740deg) scale(200);
-    transform: rotate(740deg) scale(200);
+    -webkit-transform: rotate(740deg) scale(230);
+    -ms-transform: rotate(740deg) scale(230);
+    transform: rotate(740deg) scale(230);
     z-index: 9999;
 }

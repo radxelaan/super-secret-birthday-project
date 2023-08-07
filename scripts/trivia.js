@@ -31,10 +31,8 @@ function lightsOn(){
 function startQuiz(){
   cons.style.visibility = 'hidden';
   document.body.style.backgroundImage = 'url("images/Trivia_Background.jpg")';
-  host.style.width = '500px';
-  host.style.height = '500px';
   host.style.marginRight = '70%';
-  host.style.marginTop = '2%';
+  host.style.marginTop = '5%';
   document.getElementById('desk').style.visibility = 'visible';
   document.getElementsByClassName('quiz-container')[0].style.visibility = 'visible';
 }
@@ -126,8 +124,6 @@ function nextChapter(){
     document.getElementsByTagName("audio")[0].src = "audio\\Pokémon Contest Pokémon Ruby Sapphire.ogg";
     document.getElementsByTagName("audio")[0].volume = '0.1';
     document.body.style.backgroundImage = 'url("images/gameShow.jpg")';
-    host.style.width = '400px';
-    host.style.height = '400px';
     host.style.marginRight = '5%';
     host.style.marginTop = '-21%';
     document.getElementById('desk').style.visibility = 'hidden';
