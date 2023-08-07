@@ -10,7 +10,7 @@ function enterChess(){
         document.getElementById('flash2').style.visibility = 'hidden';
         cons = document.getElementById("console");
         cons.style.visibility = 'visible';
-        script = ['test/ $'];
+        script = ['The year is 1996*/*IBM has constructed a machine that is said to be capable of intelligent thought/They gave it the name Deep Blue/Today, Deep Blue will be put to the test by facing one of the world\'s chess grandmasters, Garry Kasparov/The first game is a handful of moves away from ending/Mike: 1996? Time travel is real!? This changes everything!/Mike: For some reason I feel awfully binary./Mike: And I can\'t really feel my hands or legs.../Mike: .../Mike: Wait Am I Deep Blue!?/ $'];
         eventCount = 5;
         start();
     }, 2000);
@@ -286,7 +286,7 @@ function nextChapter(){
     setTimeout(function(){
         cons.style.visibility = 'visible';
         document.getElementById('text').innerHTML = '';
-        script = ['test/ $'];
+        script = ['Kasparov: Impossible! /Kasparov: There is no way that I would lose to a machine./ Kasparov: You must have cheated!/Mike: Oh no! He is on to me!/Mike: I have to get out of here before the history of AI changes!/*Power Off*/ $'];
         start();
     }, 2000);
 }
