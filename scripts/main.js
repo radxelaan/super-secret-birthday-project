@@ -85,7 +85,7 @@ async function showText(text) {
                 output.innerHTML = '';
                 setTimeout(function(){
                     cons.style.visibility = 'visible';
-                    script = ['Mike: Am I in a two dimensional space?/Mike: And in a hamster ball?/Mike: Whoever came up with this is a genius./Mike: Let\'s roll!/Define and plot a function of your liking and click the Start button. Move with left with A and right with D. Jump with W./ $'];
+                    script = ['Mike: Am I in a two dimensional space?/Mike: And in a hamster ball?/Mike: Whoever came up with this is a genius./Mike: Let\'s roll!/Define and plot a function of your liking and click the Start button. Move left with A and right with D. Jump with W./ $'];
                     start();
                 }, 1000);
                 break;
@@ -134,7 +134,7 @@ async function showText(text) {
                 teleportToRoom();
             }, 1000);
         }, 2000);
-    }else if(text[0] === '-'){
+    }else if(text[0] === '='){
         flashScreen();
         setTimeout(function () { 
             document.getElementById('flash').classList.toggle('fadeout');

@@ -15,7 +15,7 @@ function epilogue(){
         cons.style.zIndex = '1001';
         cons.style.visibility = 'visible';
         script = ['Offer the items you have gathered?#a.Yes#b.No&'];
-        outcomes = ["+", "-"];
+        outcomes = ["+", "="];
         start();
     }, 2000);
 }
