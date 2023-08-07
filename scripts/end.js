@@ -49,7 +49,7 @@ function teleportToRoom2(){
         document.getElementById('flash2').classList.remove('fadein');
         cons.style.visibility = 'visible';
         script = ['Mike: ...and that\'s what happened!/Junny: Mike.../Junny: Tell me something.../Junny: How much kalamatiano did you do to trip this hard?/Mike: I\'m telling you it really happened! I\'m not lying!/Junny: So what, am I supposed to believe that you are some enlightened being now?/Junny: Come on Mike, stop pulling my leg./Mike: Ok then how do you explain all this stuff?/ *Mike shows the wine, magazine page, Polaretti tattoo, piece of pi and Nomai mask*/Junny: Really? A bottle of wine, an old torn page, a tattoo for kids, some random piece of pie and a fake mask?/Junny: You could probably find all that at a place like Jumbo for like 10€./Mike: I bet Binis will believe me, he\'ll understand./ Junny: H mana sou will understand./Junny: .../Junny: Ok, that was uncalled for. Sorry./Junny: Fine let\'s go ask him./ $'];
-        eventCount = 13;
+        eventCount = 16;
         start();
     }, 2000);
 }

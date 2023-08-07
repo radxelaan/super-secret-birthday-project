@@ -20,7 +20,7 @@ function enterTavern(){
         cons = document.getElementById("console");
         document.getElementById('flash2').style.visibility = 'hidden';
         cons.style.visibility = 'visible';
-        script = ['Mike: That was close./Mike: Now where am I this time? Some kind of tavern./Mike: Oh well as long as I have my phone with me I won\'t need anything else! /Mike: *checks pockets*/Mike: I don\'t have my phone!!!/Goblin: What is all this fuss about here huh?/Goblin: You are disturbing my customers human! /Mike: Nice cosplay! Are you a goblin?/Goblin: C-cosplay? What is cosplay?/Goblin: Are you making fun of me!? Goblin: I, Sarabachar, will not tolerate your insults human! /Sarabachar: I challenge you to a competition of strength to teach you a lesson!/Mike: (Oh I get it! There is some kind of roleplaying going on here!)/Mike: And I, Eladorian Eraisuithon accept your challenge, goblin! /$'];
+        script = [' /$'];
         eventCount = 8;
         start();
     }, 2000);
@@ -87,7 +87,7 @@ async function bringSallyUp() {
     mikePos = mike.src.split("images/")[1];
     if (gobPos == "sarabacharMid.png"){
         waitTime = 200;
-        if(count == 1 && down && ui.src.split("images/")[1] != "defeat.png"){
+        if(count == 29 && down && ui.src.split("images/")[1] != "defeat.png"){
             waitTime = 1000;
             gobPos = "sarabacharDefeat1.png";
             victory();
@@ -102,7 +102,10 @@ async function bringSallyUp() {
     if(prevWait<2500){
         if(gobPos == "sarabacharDown.png" && (count == 8 || count == 13 || count == 18 || count == 30)){
             waitTime = 8700;
-            wait = true;
+            wait = true;setTimeout(function(){
+                command = Math.floor(Math.random()*keyCodes.length);
+                key.innerHTML = keyLabels[command];
+            }, 8000);
         }
         else if(gobPos == "sarabacharDown.png" && count>=1){
             waitTime = 2700;
@@ -136,7 +139,7 @@ async function bringSallyUp() {
             setTimeout(function(){
                 command = Math.floor(Math.random()*keyCodes.length);
                 key.innerHTML = keyLabels[command];
-            }, 700);
+            }, 350);
             gob.src = "images\\sarabacharUp.png";
             count++;
             setTimeout(function(){
