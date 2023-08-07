@@ -75,22 +75,44 @@ async function showText(text) {
             case 9:
                 flashScreen();
                 setTimeout(function () { 
-                    window.location.replace('stars.html');
+                    window.location.replace('2DGame.html');
                 }, 1200);
                 break;
             case 10:
-                formVisible();
+                cons.style.visibility = 'hidden';
+                document.body.style.backgroundColor= '#1a1b26';
+                load2D();
+                output.innerHTML = '';
+                setTimeout(function(){
+                    cons.style.visibility = 'visible';
+                    script = ['test/ $'];
+                    start();
+                }, 1000);
                 break;
             case 11:
-                getMask();
+                cons.style.visibility = 'hidden';
+                document.getElementById('controls').style.visibility = 'visible';
+                document.getElementsByTagName("audio")[0].src = "audio\\Pokémon Contest Pokémon Ruby Sapphire.ogg";
+                document.getElementsByTagName("audio")[0].volume = '0.1';
                 break;
             case 12:
+                setTimeout(function () { 
+                    window.location.replace('stars.html');
+                }, 1200);
+                break;
+            case 13:
+                formVisible();
+                break;
+            case 14:
+                getMask();
+                break;
+            case 15:
                 flashScreen();
                 setTimeout(function () { 
                     window.location.replace('end.html');
                 }, 1200);
                 break;
-            case 13:
+            case 16:
                 flashScreen();
                 setTimeout(function () { 
                     document.getElementById('flash').classList.toggle('fadeout');

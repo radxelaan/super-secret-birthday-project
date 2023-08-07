@@ -1,21 +1,4 @@
-h = window.innerHeight - 60
-w = window.innerWidth - 20
-engine = Matter.Engine.create()
-render = Matter.Render.create({
-  element: document.body,
-  engine:engine,
-  options: {
-      height: h,
-      width: w
-  }
-})
-render.options.wireframes = false
-detector = Matter.Detector.create()
-eq = ''
-x = Array.from(Array(w).keys())
-x = x.map(point => { return point -= w / 2 })
-y = Array.from(Array(h).keys())
-y = y.map(point => { return point -= h / 2 })
+
 let bodies = []
 let scale_factor = 70
 let sampling_rate = 4
@@ -28,6 +11,19 @@ let platform
 let goal
 let movement = false
 let grounded = false
+
+
+function enter2D(){
+  document.getElementById('flash2').classList.toggle('fadein');
+  setTimeout(function(){
+      cons = document.getElementById("console");
+      document.getElementById('flash2').style.visibility = 'hidden';
+      cons.style.visibility = 'visible';
+      script = ['test/ $'];
+      eventCount = 10;
+      start();
+  }, 2000);
+}
 
 
 
@@ -61,7 +57,7 @@ function loadLevel(lvl) {
       ball = createBall(100, h/2) 
       ball.isStatic = true
       platform = Matter.Bodies.rectangle(100, h/2 + 25, 50, 5, { isStatic: true })
-      goal = Matter.Bodies.circle(1100, h/2, 25, { isStatic: true, render:{
+      goal = Matter.Bodies.circle(1300, h/2, 25, { isStatic: true, render:{
         sprite:{
           texture: 'images/portal.png',
           xScale: 0.20,
@@ -92,9 +88,9 @@ function loadLevel(lvl) {
     case 3:
       equations = []
       movement = false
-      ball = createBall(100, 700)
-      platform = Matter.Bodies.rectangle(100, 700 + 25, 50, 5, { isStatic: true })
-      goal = Matter.Bodies.circle(100, 200, 25, { isStatic: true, render:{
+      ball = createBall(100, 0)
+      platform = Matter.Bodies.rectangle(100, 600 + 25, 50, 5, { isStatic: true })
+      goal = Matter.Bodies.circle(100, 70, 25, { isStatic: true, render:{
         sprite:{
           texture: 'images/portal.png',
           xScale: 0.20,
@@ -105,6 +101,20 @@ function loadLevel(lvl) {
       bodies = [ball, platform, goal, barrier]
       Matter.World.add(engine.world,bodies)
       break;
+    case 4:
+      flashScreen();
+      setTimeout(function(){
+        document.getElementById('pi').style.visibility = 'visible';
+        document.getElementById('pi').classList.add('transition-rotate');
+        setTimeout(function(){
+            let ui = document.getElementById('ui');
+            ui.style.visibility = 'visible';
+            ui.style.marginLeft = '30%';
+            ui.style.marginTop = '0%';
+            ui.src = 'images\\piGet.png';
+            document.addEventListener('keydown', itemGet);
+        }, 1000);
+      }, 2000);
   }
 
 }
@@ -237,132 +247,160 @@ function playerGroundCheck(event, ground) {
   }
 }
 
-
-
-const xAxis = Matter.Bodies.rectangle(w / 2, h / 2, h, 1, { isStatic: true })
-xAxis.collisionFilter = {
-'group': -1,
-'category': 2,
-'mask': 0,
-}
-Matter.Body.rotate(xAxis, Math.PI/2)
-
-const yAxis = Matter.Bodies.rectangle(w / 2, h / 2, w, 1, { isStatic: true })
-yAxis.collisionFilter = {
-'group': -1,
-'category': 2,
-'mask': 0,
-}
-
-let linesX = scaleLinesX()
-Matter.World.add(engine.world, linesX)
-
-let linesY = scaleLinesY()
-Matter.World.add(engine.world, linesY)
-
-document.querySelector('#zoom').addEventListener("click", function () {
-  scale_factor+=2
-  rerender()
-})
- 
-document.querySelector('#unzoom').addEventListener("click", function () {
-  scale_factor-=2
-  rerender()
-})
-
-
-Matter.World.add(engine.world, [xAxis, yAxis])
-loadLevel(level)
-Matter.Runner.run(engine)
-Matter.Render.run(render)
-
-Matter.Events.on(engine, 'afterUpdate', function(){
-  if (ball.position.x > w + 30|| ball.position.y > h + 30|| ball.position.x < - 30|| ball.position.y < -30) loadLevel(level)
-  if (Matter.Collision.collides(ball, goal) != null){
-    loadLevel(++level)
-  }
-})
-
-document.querySelector('#submit').addEventListener("click", function () {
-  const input = parseEquation(document.querySelector('#equation').value)
-  if (!equations.some(eq => eq.equation === input)){
-    const eq = {
-      equation: input,
-      minX: document.querySelector('#minX').value  ? document.querySelector('#minX').value : - w / scale_factor,
-      maxX: document.querySelector('#maxX').value  ? document.querySelector('#maxX').value : w / scale_factor,
+function load2D(){
+  h = window.innerHeight - 60
+  w = window.innerWidth - 20
+  engine = Matter.Engine.create()
+  render = Matter.Render.create({
+    element: document.body,
+    engine:engine,
+    options: {
+        height: h,
+        width: w
     }
-    equations.push(eq)
-    lines.push(plot(eq))
-    Matter.World.add(engine.world, lines[lines.length - 1])
-  }
-})
-
-document.querySelector('#start').addEventListener("click", function () {
-  Matter.World.remove(engine.world, platform)
-  ball.isStatic = false
-  movement = true
-})
-
-document.querySelector('#clear').addEventListener("click", function () {
-  lines.forEach(line => {
-    Matter.World.remove(engine.world, line)
   })
-  lines = []
-  equations = []
-})
+  render.options.wireframes = false
+  detector = Matter.Detector.create()
+  eq = ''
+  x = Array.from(Array(w).keys())
+  x = x.map(point => { return point -= w / 2 })
+  y = Array.from(Array(h).keys())
+  y = y.map(point => { return point -= h / 2 })
 
-document.querySelector('#undo').addEventListener("click", function () {
-  if(lines.length){
-    Matter.World.remove(engine.world, lines.pop())
-    equations.pop()
+  const xAxis = Matter.Bodies.rectangle(w / 2, h / 2, h, 1, { isStatic: true })
+  xAxis.collisionFilter = {
+  'group': -1,
+  'category': 2,
+  'mask': 0,
   }
-})
+  Matter.Body.rotate(xAxis, Math.PI/2)
 
-const keyHandlers = {
-  KeyD: () => {
-    Matter.Body.applyForce(ball, {
-      x: ball.position.x,
-      y: ball.position.y
-    }, {x: 0.0015, y: 0})
-  },
-  KeyA: () => {
-    Matter.Body.applyForce(ball, {
-      x: ball.position.x,
-      y: ball.position.y
-    }, {x: -0.0015, y: 0})
-  },
-  Space: () => {
-    Matter.Body.applyForce(ball, {
-      x: ball.position.x,
-      y: ball.position.y
-    }, {x: 0, y: -0.05})
+  const yAxis = Matter.Bodies.rectangle(w / 2, h / 2, w, 1, { isStatic: true })
+  yAxis.collisionFilter = {
+  'group': -1,
+  'category': 2,
+  'mask': 0,
   }
+
+  let linesX = scaleLinesX()
+  Matter.World.add(engine.world, linesX)
+
+  let linesY = scaleLinesY()
+  Matter.World.add(engine.world, linesY)
+
+  document.querySelector('#zoom').addEventListener("click", function () {
+    scale_factor+=2
+    rerender()
+  })
+  
+  document.querySelector('#unzoom').addEventListener("click", function () {
+    scale_factor-=2
+    rerender()
+  })
+
+
+  Matter.World.add(engine.world, [xAxis, yAxis])
+  loadLevel(level)
+  Matter.Runner.run(engine)
+  Matter.Render.run(render)
+
+  Matter.Events.on(engine, 'afterUpdate', function(){
+    if (ball.position.x > w + 30|| ball.position.y > h + 30|| ball.position.x < - 30|| ball.position.y < -30) loadLevel(level)
+    if (Matter.Collision.collides(ball, goal) != null){
+      loadLevel(++level)
+    }
+  })
+
+  document.querySelector('#submit').addEventListener("click", function () {
+    const input = parseEquation(document.querySelector('#equation').value)
+    if (!equations.some(eq => eq.equation === input)){
+      const eq = {
+        equation: input,
+        minX: document.querySelector('#minX').value  ? document.querySelector('#minX').value : - w / scale_factor,
+        maxX: document.querySelector('#maxX').value  ? document.querySelector('#maxX').value : w / scale_factor,
+      }
+      equations.push(eq)
+      lines.push(plot(eq))
+      Matter.World.add(engine.world, lines[lines.length - 1])
+    }
+  })
+
+  document.querySelector('#start').addEventListener("click", function () {
+    Matter.World.remove(engine.world, platform)
+    ball.isStatic = false
+    movement = true
+  })
+
+  document.querySelector('#clear').addEventListener("click", function () {
+    lines.forEach(line => {
+      Matter.World.remove(engine.world, line)
+    })
+    lines = []
+    equations = []
+  })
+
+  document.querySelector('#undo').addEventListener("click", function () {
+    if(lines.length){
+      Matter.World.remove(engine.world, lines.pop())
+      equations.pop()
+    }
+  })
+
+  const keyHandlers = {
+    KeyD: () => {
+      Matter.Body.applyForce(ball, {
+        x: ball.position.x,
+        y: ball.position.y
+      }, {x: 0.0015, y: 0})
+    },
+    KeyA: () => {
+      Matter.Body.applyForce(ball, {
+        x: ball.position.x,
+        y: ball.position.y
+      }, {x: -0.0015, y: 0})
+    },
+    Space: () => {
+      Matter.Body.applyForce(ball, {
+        x: ball.position.x,
+        y: ball.position.y
+      }, {x: 0, y: -0.05})
+    }
+  }
+
+  const keysDown = new Set();
+  document.addEventListener("keydown", event => {
+    if (event.code !== 'Space' || grounded) keysDown.add(event.code);
+  });
+  document.addEventListener("keyup", event => {
+    keysDown.delete(event.code)
+  });
+
+  Matter.Events.on(engine, "beforeUpdate", event => {
+    [...keysDown].forEach(k => {
+      if (movement) keyHandlers[k]?.()
+      if (k === 'Space') keysDown.delete(k)
+    })
+  })
+
+  Matter.Events.on(engine, "collisionStart", function(event) {
+    playerGroundCheck(event, true)
+  })
+
+  Matter.Events.on(engine, "collisionActive", function(event) {
+    playerGroundCheck(event, true)
+  })
+
+  Matter.Events.on(engine, 'collisionEnd', function(event) {
+    playerGroundCheck(event, false);
+  })
+
 }
 
-const keysDown = new Set();
-document.addEventListener("keydown", event => {
-  if (event.code !== 'Space' || grounded) keysDown.add(event.code);
-});
-document.addEventListener("keyup", event => {
-  keysDown.delete(event.code)
-});
-
-Matter.Events.on(engine, "beforeUpdate", event => {
-  [...keysDown].forEach(k => {
-    if (movement) keyHandlers[k]?.()
-    if (k === 'Space') keysDown.delete(k)
-  })
-})
-
-Matter.Events.on(engine, "collisionStart", function(event) {
-  playerGroundCheck(event, true)
-})
-
-Matter.Events.on(engine, "collisionActive", function(event) {
-  playerGroundCheck(event, true)
-})
-
-Matter.Events.on(engine, 'collisionEnd', function(event) {
-  playerGroundCheck(event, false);
-})
-
+function nextChapter(){
+  document.getElementById('pi').classList.remove('transition-rotate');
+  document.getElementById('pi').style.visibility = 'hidden';
+  setTimeout(function(){
+    script = ['$'];
+    start();
+  }, 2000);
+}

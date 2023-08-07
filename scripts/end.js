@@ -32,7 +32,7 @@ function teleportToRoom(){
         document.getElementById('flash2').classList.remove('fadein');
         cons.style.visibility = 'visible';
         script = ['Mike: ...and that\'s what happened!/Junny: Mike.../Junny: Tell me something.../Junny: How much kalamatiano did you do to trip this hard?/Mike: I\'m telling you it really happened! I\'m not lying!/Mike: At least it felt real.../Junny: So what, am I supposed to believe that you are some enlightened being now?/Junny: Come on Mike, stop pulling my leg./Mike: Ok, maybe you are right.../Junny: Come on, I\'ll show you how "Sally Up" is actually done./ $'];
-        eventCount = 13;
+        eventCount = 16;
         start();
     }, 2000);
 }
