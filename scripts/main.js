@@ -92,7 +92,7 @@ async function showText(text) {
             case 11:
                 cons.style.visibility = 'hidden';
                 document.getElementById('controls').style.visibility = 'visible';
-                document.getElementsByTagName("audio")[0].src = "audio\\Pokémon Contest Pokémon Ruby Sapphire.ogg";
+                document.getElementsByTagName("audio")[0].src = "audio\\baba.ogg";
                 document.getElementsByTagName("audio")[0].volume = '0.1';
                 break;
             case 12:

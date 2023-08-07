@@ -46,10 +46,9 @@ button{
   border: 1px solid rgb(170, 170, 170);
   border-radius: 6px; 
   display: block;
-  margin-top: 6rem;
-  margin-left: 35%;
+  margin-top: 9rem;
+  margin-left: 38%;
   background-color: white;
-  padding: 2rem;
   visibility: hidden;
   width: 25%;
   height: 25%;

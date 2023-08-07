@@ -5,7 +5,7 @@ let sampling_rate = 4
 let points = []
 let lines = []
 let equations = []
-let level = 3
+let level = 0
 let ball
 let platform
 let goal
@@ -45,8 +45,8 @@ function loadLevel(lvl) {
       goal = Matter.Bodies.circle(1100, 500, 25, { isStatic: true, render:{
         sprite:{
           texture: 'images/portal.png',
-          xScale: 0.15,
-          yScale: 0.15
+          xScale: 0.20,
+          yScale: 0.20
         }
       } })
       bodies = [ball, platform, goal]
@@ -122,7 +122,6 @@ function loadLevel(lvl) {
         setTimeout(function(){
             let ui = document.getElementById('ui');
             ui.style.visibility = 'visible';
-            ui.style.marginLeft = '30%';
             ui.style.marginTop = '0%';
             ui.src = 'images\\piGet.png';
             document.addEventListener('keydown', itemGet);
