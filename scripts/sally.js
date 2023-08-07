@@ -130,7 +130,7 @@ async function bringSallyUp() {
                 if(ui.src.split("images/")[1] != "defeat.png" && mikePos == "mikeUp.png"){
                     penalty();
                 }
-            }, 175);
+            }, 500);
         }
         else if (!wait && gobPos == "sarabacharMid.png"){
             setTimeout(function(){
@@ -144,7 +144,7 @@ async function bringSallyUp() {
                 if(ui.src.split("images/")[1] != "defeat.png" && mikePos == "mikeDown.png"){
                     penalty();
                 }
-            }, 175);
+            }, 500);
         }
         else if (gobPos == "sarabacharDefeat1.png") {
             gob.src = "images\\sarabacharDefeat2.png";
