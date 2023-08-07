@@ -87,7 +87,7 @@ async function bringSallyUp() {
     mikePos = mike.src.split("images/")[1];
     if (gobPos == "sarabacharMid.png"){
         waitTime = 200;
-        if(count == 29 && down && ui.src.split("images/")[1] != "defeat.png"){
+        if(count == 1 && down && ui.src.split("images/")[1] != "defeat.png"){
             waitTime = 1000;
             gobPos = "sarabacharDefeat1.png";
             victory();
