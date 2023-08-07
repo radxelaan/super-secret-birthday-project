@@ -1,4 +1,5 @@
-
+h = window.innerHeight - 60
+w = window.innerWidth - 20
 let bodies = []
 let scale_factor = 70
 let sampling_rate = 4
@@ -9,7 +10,18 @@ let level = 0
 let ball
 let platform
 let goal
-let pie
+let pie = Matter.Bodies.circle(1000, h/2, 20, { isStatic: true, render:{
+  sprite:{
+    texture: 'images/pie.png',
+    xScale: 0.15,
+    yScale: 0.15
+  }
+} })
+pie.collisionFilter = {
+  'group': -1,
+  'category': 2,
+  'mask': 0,
+  }
 let movement = false
 let grounded = false
 
@@ -98,18 +110,6 @@ function loadLevel(lvl) {
           yScale: 0.20
         }
       } })
-      pie = Matter.Bodies.circle(1000, h/2, 20, { isStatic: true, render:{
-        sprite:{
-          texture: 'images/pie.png',
-          xScale: 0.15,
-          yScale: 0.15
-        }
-      } })
-      pie.collisionFilter = {
-        'group': -1,
-        'category': 2,
-        'mask': 0,
-        }
       barrier = Matter.Bodies.rectangle(250, h/2, 900, 150, { isStatic: true, render: { fillStyle: '#282930' } })
       bodies = [ball, platform, barrier, pie]
       Matter.World.add(engine.world,bodies)
@@ -260,8 +260,6 @@ function playerGroundCheck(event, ground) {
 }
 
 function load2D(){
-  h = window.innerHeight - 60
-  w = window.innerWidth - 20
   engine = Matter.Engine.create()
   render = Matter.Render.create({
     element: document.body,

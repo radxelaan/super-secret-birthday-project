@@ -240,7 +240,7 @@ function dropPiece(e){
             setTimeout(function(){
                 cons.style.visibility = 'visible';
                 document.getElementById('text').innerHTML = '';
-                script = ['(Kasparov forfiets...)/ $'];
+                script = ['(Kasparov forfeits...)/ $'];
                 start();
             }, 3000);
         }

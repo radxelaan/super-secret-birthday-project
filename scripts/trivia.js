@@ -19,7 +19,7 @@ function enterTrivia(){
 
 function lightsOn(){
   document.getElementsByTagName("audio")[0].src = "audio\\Pokémon Contest Pokémon Ruby Sapphire.ogg";
-  document.getElementsByTagName("audio")[0].volume = '0.1';
+  document.getElementsByTagName("audio")[0].volume = '0.07';
   document.body.style.backgroundImage = 'url("images/gameShow.jpg")';
   host = document.getElementById('host');
   host.style.visibility = 'visible';
@@ -125,7 +125,7 @@ function nextChapter(){
     document.getElementsByTagName("audio")[0].volume = '0.1';
     document.body.style.backgroundImage = 'url("images/gameShow.jpg")';
     host.style.marginRight = '5%';
-    host.style.marginTop = '-21%';
+    host.style.marginTop = '-16%';
     document.getElementById('desk').style.visibility = 'hidden';
   }, 1000);
   setTimeout(function(){

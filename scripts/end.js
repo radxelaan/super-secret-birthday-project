@@ -57,7 +57,7 @@ function teleportToRoom2(){
 function rollCredits(){
     document.getElementsByTagName("audio")[0].src = "audio/Kirby Super Star Credits.ogg";
     document.getElementsByTagName("audio")[0].loop=false;
-    document.getElementsByTagName("audio")[0].volume = '0.2';
+    document.getElementsByTagName("audio")[0].volume = '0.45';
     cons.style.visibility = 'hidden';
     document.body.style.backgroundImage = 'url("images/bg3.jpg")';
     setTimeout(function(){

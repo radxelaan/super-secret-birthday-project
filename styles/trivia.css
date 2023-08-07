@@ -76,7 +76,7 @@ body {
   }
 
 #host{
-    visibility: hidden; position: absolute; margin-top: -18%; margin-right: 5%; width: 350px; height: 350px;
+    visibility: hidden; position: absolute; margin-top: -16%; margin-right: 5%; width: 350px; height: 350px;
 }
 
 #wine{
@@ -105,8 +105,8 @@ body {
 }
 
 .transition-rotate{
-    -webkit-transform: rotate(740deg) scale(230);
-    -ms-transform: rotate(740deg) scale(230);
-    transform: rotate(740deg) scale(230);
+    -webkit-transform: rotate(740deg) scale(100);
+    -ms-transform: rotate(740deg) scale(100);
+    transform: rotate(740deg) scale(100);
     z-index: 9999;
 }
