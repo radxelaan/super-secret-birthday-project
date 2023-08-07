@@ -9,6 +9,7 @@ let level = 3
 let ball
 let platform
 let goal
+let pie
 let movement = false
 let grounded = false
 
@@ -88,17 +89,29 @@ function loadLevel(lvl) {
     case 3:
       equations = []
       movement = false
-      ball = createBall(100, 0)
+      ball = createBall(100, 600)
       platform = Matter.Bodies.rectangle(100, 600 + 25, 50, 5, { isStatic: true })
       goal = Matter.Bodies.circle(100, 70, 25, { isStatic: true, render:{
         sprite:{
-          texture: 'images/portal.png',
+          texture: 'images/portal_flipped.png',
           xScale: 0.20,
           yScale: 0.20
         }
       } })
+      pie = Matter.Bodies.circle(1000, h/2, 20, { isStatic: true, render:{
+        sprite:{
+          texture: 'images/pie.png',
+          xScale: 0.15,
+          yScale: 0.15
+        }
+      } })
+      pie.collisionFilter = {
+        'group': -1,
+        'category': 2,
+        'mask': 0,
+        }
       barrier = Matter.Bodies.rectangle(250, h/2, 900, 150, { isStatic: true, render: { fillStyle: '#282930' } })
-      bodies = [ball, platform, goal, barrier]
+      bodies = [ball, platform, barrier, pie]
       Matter.World.add(engine.world,bodies)
       break;
     case 4:
@@ -309,6 +322,10 @@ function load2D(){
     if (Matter.Collision.collides(ball, goal) != null){
       loadLevel(++level)
     }
+    if (Matter.Collision.collides(ball, pie) != null){
+      Matter.World.add(engine.world, goal)
+      Matter.World.remove(engine.world, pie)
+    }
   })
 
   document.querySelector('#submit').addEventListener("click", function () {
@@ -359,7 +376,7 @@ function load2D(){
         y: ball.position.y
       }, {x: -0.0015, y: 0})
     },
-    Space: () => {
+    KeyW: () => {
       Matter.Body.applyForce(ball, {
         x: ball.position.x,
         y: ball.position.y
@@ -369,7 +386,7 @@ function load2D(){
 
   const keysDown = new Set();
   document.addEventListener("keydown", event => {
-    if (event.code !== 'Space' || grounded) keysDown.add(event.code);
+    if (event.code !== 'KeyW' || grounded) keysDown.add(event.code);
   });
   document.addEventListener("keyup", event => {
     keysDown.delete(event.code)
@@ -378,7 +395,7 @@ function load2D(){
   Matter.Events.on(engine, "beforeUpdate", event => {
     [...keysDown].forEach(k => {
       if (movement) keyHandlers[k]?.()
-      if (k === 'Space') keysDown.delete(k)
+      if (k === 'KeyW') keysDown.delete(k)
     })
   })
 
