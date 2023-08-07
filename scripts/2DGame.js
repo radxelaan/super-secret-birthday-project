@@ -32,7 +32,7 @@ function enter2D(){
       cons = document.getElementById("console");
       document.getElementById('flash2').style.visibility = 'hidden';
       cons.style.visibility = 'visible';
-      script = ['test/ $'];
+      script = ['Mike: I seem to have lost my sense of direction.../Mike: And I\'m suddenly craving cheese.../ $'];
       eventCount = 10;
       start();
   }, 2000);

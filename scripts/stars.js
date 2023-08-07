@@ -17,7 +17,7 @@ function blink(image, time, counter){
         document.getElementById('flash2').classList.remove('fadein');
         cons = document.getElementById("console");
         cons.style.visibility = 'visible';
-        script = ['test/ $'];
+        script = ['Mike: .../Mike: I\'m in space!!!/Mike: This is the best day ever!/Mike: Can I see my house from here?/Mike: Oh wow! It\'s the Big Dipper!/ $'];
         eventCount = 13;
         start();
     }, 2000);
@@ -80,7 +80,7 @@ function validateForm() {
           cons.style.zIndex = '10001';
           cons.style.visibility = 'visible';
           output.innerHTML = '';
-          script = ['(You feel like you are closer to discovering the truth of the universe)/ $'];
+          script = ['You feel like you are closer to discovering the truth of the universe/ $'];
           start();
       }, 1000);
   }, 2000);
@@ -124,7 +124,7 @@ function nextChapter(){
   setTimeout(function(){
     cons.style.visibility = 'visible';
     document.getElementById('text').innerHTML = '';
-    script = ['(You feel like time and space start warping around you...)/ $'];
+    script = ['You feel like time and space start warping around you.../ $'];
     start();
 }, 2000);
 }

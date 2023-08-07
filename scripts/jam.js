@@ -33,7 +33,7 @@ function hidePopup(){
 
     if(count>=5){
         document.getElementById("console").style.visibility = 'visible';
-        script = ['Urgh, with every game jam these choices become more and more difficult to pick from.../I mean, it\'s as if they are specifically picking me for the target audience!/ I wish I could choose all of them./ That would make for an interesting game./$Uh oh... What\'s going on?/ $'];
+        script = ['???: Argh, every game jam these choices become more and more difficult to pick from.../???: I mean, it\'s as if the themes are specifically for me! /???: I wish I could choose all of them./???: That would make for an interesting game./$???: Uh oh... What\'s going on?/ $'];
         start();
     }
 }

@@ -20,7 +20,7 @@ function enterTavern(){
         cons = document.getElementById("console");
         document.getElementById('flash2').style.visibility = 'hidden';
         cons.style.visibility = 'visible';
-        script = ['test/ $'];
+        script = ['Mike: That was close./Mike: Now where am I this time? Some kind of tavern./Mike: Oh well as long as I have my phone with me I won\'t need anything else! /Mike: *checks pockets*/Mike: I don\'t have my phone!!!/Goblin: What is all this fuss about here huh?/Goblin: You are disturbing my customers human! /Mike: Nice cosplay! Are you a goblin?/Goblin: C-cosplay? What is cosplay?/Goblin: Are you making fun of me!? Goblin: I, Sarabachar, will not tolerate your insults human! /Sarabachar: I challenge you to a competition of strength to teach you a lesson!/Mike: (Oh I get it! There is some kind of roleplaying going on here!)/Mike: And I, Eladorian Eraisuithon accept your challenge, goblin! /$'];
         eventCount = 8;
         start();
     }, 2000);
@@ -276,7 +276,7 @@ function nextChapter(){
     setTimeout(function(){
         cons.style.visibility = 'visible';
         document.getElementById('text').innerHTML = '';
-        script = ['test/ $'];
+        script = ['Sarabachar: Sarabachar admits defeat! /Sarabachar: Sarabachar is sorry! This prize is one that is given only to true champions./ Wear it with pride, Eladorian Eraisuithon! /Eladorian: Thank you, o worthy adversary! I will not forget thy gift!/ Farewell!/ $'];
         start();
     }, 2000);
 }

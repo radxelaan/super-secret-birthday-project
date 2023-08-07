@@ -131,7 +131,7 @@ function nextChapter(){
   setTimeout(function(){
     cons = document.getElementById("console");
     cons.style.visibility = 'visible';
-    script = ['test/ $'];
+    script = ['Edd Scissorhand: My oh my, what a spectacular performance from our contestant! /Mike: Those last few ones where oddly specific.../Mike: Where did you even get thsese pictures...?/Edd Scissorhand: Oh would you look at that, that\'s all the time we have today folks! Everyone have a wonderful evening and Ma-Na-Su will be back next Monday!/Mike: Wait-/ $/ $'];
     start();
 }, 1000);
 }
