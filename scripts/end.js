@@ -1,4 +1,4 @@
-let credits = ['Credit&One', 'Credit&Two', 'Credit&Three', 'Credit&Four','Credit&One', 'Credit&Two', 'Credit&Three', 'Credit&Four','Credit&One', 'Credit&Two', 'Credit&Three', 'Credit&Four','Credit&One', 'Credit&Two', 'Credit&Three', 'Credit&Four'];
+let credits = ['Programmers&Sandra&Nerobableki&DJ Aboo', 'Art Direction&Marius&Bing AI', 'Production&Alexa&Bableki', 'Writing&J.R.R Tolkien&Marios-Ioannis', 'Music&Toby Fox&Nintendo&Mozart', 'Localization&Beanis&Babiniotis', 'Marketing&Junny&D', 'Trivia Game&Mr. Wiki&Saint George','Chess Game&WimbleBimble&Garry Kasparov&IBM', 'Sally Up Game&Marios&Sarabachar&Sally', 'Hamster Game&Alex&Hampter&HManaSu', 'Stars Game&Alexandra&NASA&Solanum','Special Thanks&Junny&D', 'Binis&Andrew', 'F1 Skatzoxeiros&ManaSu', 'Thanks for playing!'];
 let creditIndex = 0;
 let credit1;
 let credit2;
@@ -77,8 +77,8 @@ function changeCredits(){
     setTimeout(function(){
         document.getElementById('credits').style.visibility = 'visible';
         if(creditIndex < credits.length){
-            credit1.innerHTML = credits[creditIndex].replace('&', '<br/>');
-            credit2.innerHTML = credits[creditIndex + 1].replace('&', '<br/>');
+            credit1.innerHTML = credits[creditIndex].replaceAll('&', '<br/>');
+            credit2.innerHTML = credits[creditIndex + 1].replaceAll('&', '<br/>');
             setTimeout(function(){
                 document.getElementById('credits').style.visibility = 'hidden';
                 creditIndex += 2;
