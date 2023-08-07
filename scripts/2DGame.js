@@ -323,6 +323,7 @@ function load2D(){
       loadLevel(++level)
     }
     if (Matter.Collision.collides(ball, pie) != null){
+      bodies.push(goal)
       Matter.World.add(engine.world, goal)
       Matter.World.remove(engine.world, pie)
     }
